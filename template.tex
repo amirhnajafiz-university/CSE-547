@@ -1,0 +1,40 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, graphicx}
+\usepackage{hyperref}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+
+\begin{document}
+
+\title{CSE 547 - Assignment Number 1}
+\author{Amirhossein Najafizadeh}
+\date{\today}
+\maketitle
+
+\section*{Metadata}
+Course Name: Discrete Mathematics \\
+Semester: Fall 2024 \\
+Student SBU Number: 116715544
+
+\section{Example Problems}
+\subsection{Problem 1}
+\textbf{Statement:} Prove that the sum of the first $n$ natural numbers is given by:
+\[
+S = \frac{n(n+1)}{2}
+\]
+
+\textbf{Solution:} We can prove this using mathematical induction.
+
+\textit{Base Case:} For $n = 1$, the sum $S = 1$, which matches the formula.
+
+\textit{Inductive Step:} Assume the formula is true for $n = k$, i.e.,
+\[
+S = \frac{k(k+1)}{2}
+\]
+Now, consider $n = k+1$. The sum for $n = k+1$ is:
+\[
+S = \frac{k(k+1)}{2} + (k+1) = \frac{k(k+1) + 2(k+1)}{2} = \frac{(k+1)(k+2)}{2}
+\]
+Thus, the formula holds for $n = k+1$. By induction, the formula is true for all $n \in \mathbb{N}$.`'
+
+\end{document}
