@@ -2,6 +2,7 @@
 
 % packages in use
 \usepackage{amsmath, amssymb, graphicx}
+\usepackage{array}
 \usepackage{geometry}
 
 % global settings
@@ -15,7 +16,8 @@
     {\LARGE\textbf{CSE 547: Homework One}} \\[1em]
     {\large Amirhossein Najafizadeh} \\[1em]
     Semester: Fall 2024 \\ 
-    University Number: 116715544 \\[1em]
+    SBU ID: 116715544 \\
+    Email: Amirhossein.Najafizadeh@stonybrook.edu \\[1em]
     \noindent\rule{\textwidth}{0.6pt}
 \end{center}
 
@@ -56,7 +58,39 @@ Not to mention that in all cases when $n=0$, then we don't have any disks to mov
 
 \section*{Question 4}
 \subsection*{4). 1.21}
-\
+In order to see if an answer exists for this problem, first we are going to check what is our position after $k$th step. We start from number 1 and each time we move $m$ places to kill the person on that position.
+To meet the condition of our problem, we need to make sure that our position is always in $(n, n+1, \ldots, 2n)$th positions. Now let's see what are the available positions in each step:
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|}
+        \hline
+        step & available positions \\
+        \hline
+        $1$ & $P(1): m \mod 2n \in (n, \ldots, 2n)$ \\
+        \hline
+        $2$ & $P(2): P(1) + m \mod {2n-1} \in (n, \ldots, 2n-1)$ \\
+        \hline
+        $3$ & $P(3): P(2) + m \mod {2n-2} \in (n, \ldots, 2n-2)$ \\
+        \hline
+        $\ldots$ & $\ldots$ \\
+        \hline
+        $k$ & $P(k): P(k-1) + m \mod {2n-k+1} \in (n, \ldots, 2n-k+1)$ \\
+        \hline
+    \end{tabular}
+    \caption{available positions after each step}
+    \label{tab:sample}
+\end{table}
+
+In general:
+\begin{gather*}
+    P(k) = P(k-1) + m \mod {(2n-k+1)} \\
+    = P(k-2) + m \mod {(2n-k)} + m \mod {(2n-k+1)} \\
+    = m \mod 2n + m \mod 2n + m \mod {(2n-1)} + \ldots
+\end{gather*}
+
+Based on the available positions, $m$ should be a number that $P(k) \text{is always in} [n+1, 2n-k]$. To meet that, it needs a common multiple with each number
+in the equation. Therefore, $m$ can be any number that is in the common multiple of number $n+1, n+2, \ldots, 2n$.
+
 \section*{Question 5}
 \subsection*{5). 2.14}
 
