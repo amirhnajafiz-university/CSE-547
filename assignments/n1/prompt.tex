@@ -1,12 +1,16 @@
 \documentclass[12pt]{article}
+
+% packages in use
 \usepackage{amsmath, amssymb, graphicx}
 \usepackage{geometry}
-\geometry{a4paper, margin=1in}
 
+% global settings
+\geometry{a4paper, margin=1in}
 \setlength{\parindent}{0pt}
 
 \begin{document}
 
+% title section
 \begin{center}
     {\LARGE\textbf{CSE 547: Homework One}} \\[1em]
     {\large Amirhossein Najafizadeh} \\[1em]
@@ -15,30 +19,31 @@
     \noindent\rule{\textwidth}{0.6pt}
 \end{center}
 
+% answer sheet
 \section*{Question 1}
 \subsection*{1). 1.10}
 First we are going to prove that $Q_{n}$ is equal to $2R_{n-1}+1$. Let's assume that we want to go from $A$ to $B$ by using reverse algorithm. In this case our available moves are:
 \begin{gather*}
-B \to A \\
-A \to C \\
-C \to B
+    B \to A \\
+    A \to C \\
+    C \to B
 \end{gather*}
 
 Our approach is going to be like the Tower of Hanoi's solution:
 \begin{gather*}
-\text{move} (n-1) : A \to C \Rightarrow R_{n-1} \\
-\text{move the largest disk} : A \to C \to B \Rightarrow 1 \\
-\text{move} (n-1) : C \to A \Rightarrow R_{n-1} \\
-\text{overall cost is} : R_{n-1} + 1 + R_{n-1} = 2R_{n-1} + 1
+    \text{move} (n-1) : A \to C \Rightarrow R_{n-1} \\
+    \text{move the largest disk} : A \to C \to B \Rightarrow 1 \\
+    \text{move} (n-1) : C \to A \Rightarrow R_{n-1} \\
+    \text{overall cost is} : R_{n-1} + 1 + R_{n-1} = 2R_{n-1} + 1
 \end{gather*}
 
 Now that we proved the first relation, we are going to use the same approach to prove that $R_{n}$ is equal to $Q_{n}+Q_{n-1}+1$. Assume we want to go back to $B$ from $A$:
 \begin{gather*}
-\text{move} (n-1) : B \to A \Rightarrow R_{n-1} \\
-\text{move} (n-1) : A \to C \Rightarrow R_{n-1} \\
-\text{move the largest disk} : B \to A \Rightarrow 1 \\
-\text{move n-1 disks (it's like two reverse move in order)} : C \to B \to A \Rightarrow 2R_{n-2}+2 \\
-\text{overall cost is} : R_{n-1} + R_{n-1} + 1 + 2R_{n-2} + 2 \\= (2R_{n-1} + 1) + (2R_{n-2} + 1) + 1 = Q_{n} + Q_{n-1} + 1
+    \text{move} (n-1) : B \to A \Rightarrow R_{n-1} \\
+    \text{move} (n-1) : A \to C \Rightarrow R_{n-1} \\
+    \text{move the largest disk} : B \to A \Rightarrow 1 \\
+    \text{move n-1 disks (it's like two reverse move in order)} : C \to B \to A \Rightarrow 2R_{n-2}+2 \\
+    \text{overall cost is} : R_{n-1} + R_{n-1} + 1 + 2R_{n-2} + 2 \\= (2R_{n-1} + 1) + (2R_{n-2} + 1) + 1 = Q_{n} + Q_{n-1} + 1
 \end{gather*}
 
 Not to mention that in all cases when $n=0$, then we don't have any disks to move. Therefore, the equations for $n=0$ remains as $R_{0}=Q_{0}=0$.
@@ -63,5 +68,82 @@ Not to mention that in all cases when $n=0$, then we don't have any disks to mov
 
 \section*{Question 8}
 \subsection*{10).}
+In order to prove this equation, we are going to use a \textit{mathematical induction}. In the Fibonacci sequence we have:
+\begin{gather*}
+    F_{n} = F_{n-1} + F_{n-2} \\
+    F_{0}=0, F_{1}=1, F_{2}=1
+\end{gather*}
+
+For $n=1$ we have:
+\begin{gather*}
+    \begin{bmatrix}
+        F_{2} & F_{1} \\
+        F_{1} & F_{0}
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        1 & 1 \\
+        1 & 0
+    \end{bmatrix}
+    =
+    \left(\begin{bmatrix}
+        1 & 1 \\
+        1 & 0
+    \end{bmatrix}\right)^1
+\end{gather*}
+
+Now let's assume for $n-1$ we have:
+\begin{gather*}
+    \begin{bmatrix}
+        F_{n} & F_{n-1} \\
+        F_{n-1} & F_{n-2}
+    \end{bmatrix}
+    =
+    \left(\begin{bmatrix}
+    1 & 1 \\
+    1 & 0
+    \end{bmatrix}\right)^{n-1}
+\end{gather*}
+
+Now we are going to multiply both sides by \( \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix} \):
+\begin{gather*}
+    \begin{bmatrix}
+        F_{n} & F_{n-1} \\
+        F_{n-1} & F_{n-2}
+    \end{bmatrix}
+    \times
+    \begin{bmatrix}
+        1 & 1 \\
+        1 & 1
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        F_{n}+F_{n-1} & F_{n} \\
+        F_{n-1}+F_{n-2} & F_{n-1}
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        F_{n+1} & F_{n} \\
+        F_{n} & F_{n-1}
+    \end{bmatrix}
+    =
+    \left(\begin{bmatrix}
+    1 & 1 \\
+    1 & 0
+    \end{bmatrix}\right)^{n}
+\end{gather*}
+
+And now that we proved the $n$th step, we can say by the power of \textit{mathematical induction}:
+\begin{gather*}
+    \begin{bmatrix}
+        F_{n+1} & F_{n} \\
+        F_{n} & F_{n-1}
+    \end{bmatrix}
+    =
+    \left(\begin{bmatrix}
+    1 & 1 \\
+    1 & 0
+    \end{bmatrix}\right)^{n}
+\end{gather*}
 
 \end{document}
