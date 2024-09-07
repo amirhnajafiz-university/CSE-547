@@ -99,6 +99,29 @@ in the equation. Therefore, $m$ can be any number that is in the common multiple
 
 \section*{Question 7}
 \subsection*{9).}
+To solve this problem, we are going to expand our recurrence relation:
+\begin{gather*}
+    T(n) = T(\frac{N}{2}) + n \to n = 2^k \\
+    T(2^k) = T(2^{k-1}) + 2^k = T(2^{k-2}) + 2^{k-1} + 2^k + \ldots \\
+    T(2^k) = 1 + 2 + 4 + \cdots + 2^k = \sum_{j=0}^k 2^j
+\end{gather*}
+
+For a geometric sequence we have:
+\begin{gather*}
+    S_{n} = \frac{a_{0}(r^n-1)}{r-1}
+\end{gather*}
+
+In this case, for $a_{0}=1$ and ${r=2}$ we have:
+\begin{gather*}
+    S_{n} = 2^{n+1} - 1
+\end{gather*}
+
+Therefore:
+\begin{gather*}
+    T(2^k) = 2^{k+1} - 1 = 2 \times 2^k - 1 \\
+    T(n) = 2n - 1
+\end{gather*}
+
 
 \section*{Question 8}
 \subsection*{10).}
