@@ -1,20 +1,17 @@
 \documentclass[12pt]{article}
 \usepackage{amsmath, amssymb, graphicx}
-\usepackage{hyperref}
 \usepackage{geometry}
 \geometry{a4paper, margin=1in}
 
 \begin{document}
 
-\title{CSE 547 - Assignment Number 1}
-\author{Amirhossein Najafizadeh}
-\date{\today}
-\maketitle
-
-\section*{Metadata}
-Course Name: Discrete Mathematics \\
-Semester: Fall 2024 \\
-Student SBU Number: 116715544
+\begin{center}
+    {\LARGE\textbf{CSE 547: Assignment Number 1}} \\[1em]
+    {\large Amirhossein Najafizadeh} \\[1em]
+    Semester: Fall 2024 \\ 
+    University Number: 116715544 \\[1em]
+    \noindent\rule{\textwidth}{0.6pt}
+\end{center}
 
 \section{Example Problems}
 \subsection{Problem 1}
@@ -35,6 +32,20 @@ Now, consider $n = k+1$. The sum for $n = k+1$ is:
 \[
 S = \frac{k(k+1)}{2} + (k+1) = \frac{k(k+1) + 2(k+1)}{2} = \frac{(k+1)(k+2)}{2}
 \]
-Thus, the formula holds for $n = k+1$. By induction, the formula is true for all $n \in \mathbb{N}$.`'
+Thus, the formula holds for $n = k+1$. By induction, the formula is true for all $n \in \mathbb{N}$.
+
+% Exercises
+\section{Exercises}
+\subsection{Exercise 1}
+Prove that the binomial coefficient $\binom{n}{k}$ satisfies the identity:
+\[
+\binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1}
+\]
+
+\subsection{Exercise 2}
+Evaluate the following sum:
+\[
+\sum_{k=1}^{n} k^2
+\]
 
 \end{document}
