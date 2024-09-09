@@ -10,6 +10,8 @@
 \geometry{a4paper, margin=1in}
 \setlength{\parindent}{0pt}
 
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
 \begin{document}
 
 % title section
@@ -187,6 +189,27 @@ in the equation. Therefore, $m$ can be any number that is in the common multiple
 
 \section*{Question 5}
 \subsection*{5). 2.14}
+First we try to convert our summation:
+\begin{gather*}
+    \sum_{k=0}^n k2^k \to \sum_{1 \leq j \leq k \leq n } 2^k \\
+    \text{($\RNum{1}$) we know that: } \sum_{j=0}^n 1 = n \\
+    \text{therefore, we can replace the innser $k$ with ($\RNum{1}$): } k = \sum_{j=0}^k 1 \\
+    S_{n} = \sum_{1 \leq j \leq k \leq n} 2^k
+\end{gather*}
+
+Now to solve the problem, according to the textbook, we have:
+\begin{gather*}
+    \text{$(\RNum{1})$ } 2S_{UT} = \sum_{1 \leq j,k \leq n} a_{j}a_{k} - \sum_{1 \leq j=k \leq n} a_{j}a_{k} \\
+    \text{$(\RNum{2})$ } \sum_{k=0}^n 2^k = 2^{n+1} - 1
+\end{gather*}
+
+As for this problem:
+\begin{gather*}
+    2S_{UT} = \sum{1 \leq j,k \leq n} 2^k - \sum{1 \leq j=k \leq n} 2^k \\
+    \text{$(\RNum{1}), (\RNum{2})$ } 2S_{UT} = n2^{n+1} - 1 - (2^{n+1} + 1) \\
+    2S_{UT} = n2^{n} \times 2 - 2^n \times 2 - 2 \\
+    S_{UT} = S_{n} = n2^{n} - 2^n - 1 
+\end{gather*}
 
 \section*{Question 6}
 \subsection*{6). 2.21}
