@@ -61,14 +61,17 @@ As this is like the \textit{Line in the plane} problem, we are going to go with 
 Now, for counting the new spaces created by adding the new plane, the nth plane can intersect each of the previous $n-1$ planes in a line.
 These intersections divide nth plane into new spaces. So, it is a combination of the new and old planes. Therefore:
 \begin{gather*}
-    P(n) = P(n-1) + 1 + n + \begin{pmatrix} n \\ 2 \end{pmatrix} \\
-    P(n) = P(n-1) + 1 + n + \frac{n \times (n-1)}{2}
+    P(n) = P(n-1) + \begin{pmatrix} n \\ 2 \end{pmatrix} + n + 1 \\
+    P(n) = P(n-1) + \frac{n \times (n-1)}{2} + n + 1
 \end{gather*}
 
 For solving $P(n)$, we are going to use the \textit{Line in the plane} solution:
 \begin{gather*}
-    P(n) = P(n-2) + 1 + n + \frac{(n-1) \times (n-2)}{2} + 1 + n + \frac{n \times (n-1)}{2} = \ldots
-    P(n) = 1 + n + \frac{n \times (n-1)}{2} + \frac{n \times (n-1) \times (n-2)}{2 \times 3}
+    P(n) = P(n-1) + \frac{n \times (n-1)}{2} + n + 1 \\
+    = P(n-2) + \frac{(n-1) \times (n-2)}{2} + (n-1) + 1 + \frac{n \times (n-1)}{2} + n + 1  \\
+    = P(n-3) + \frac{(n-2) \times (n-3)}{2} + (n-2) + 1 + \frac{(n-1) \times (n-2)}{2} + (n-1) + 1 + \frac{n \times (n-1)}{2} + n + 1  \\
+    = 1 + \sum_{j=0}^n 1 + \sum_{j=0}^n \frac{j}{2} + \sum_{j=0}^n \begin{pmatrix} n-j \\ 2 \end{pmatrix} \\
+    = 1 + n + \frac{n \times (n-1)}{2} + \frac{n \times (n-1) \times (n-2)}{2 \times 3}
 \end{gather*}
 
 To test our answer:
@@ -83,9 +86,9 @@ To test our answer:
 First we are going to simplify our recurrence function to use the repertoire method.
 \begin{gather*}
     g(1) = \alpha \text{ $(n=0)$} \\
-    g(2n+j) = 3g(n) + \gamma n + \beta_{j} \text{ $(n \geq 1, j=0,1)$} \to \\
-    g(2n) = 3g(n) + \gamma n + \beta_{0} \\
-    g(2n+1) = 3g(n) + \gamma n + \beta_{1} \\
+    g(2n+j) = 3g(n) + \gamma n + \beta_{j} \text{ $(n \geq 1, j=0,1)$} \\
+    \to g(2n) = 3g(n) + \gamma n + \beta_{0} \\
+    \to g(2n+1) = 3g(n) + \gamma n + \beta_{1} \\
     \Rightarrow g(n) = A(n) \alpha + B(n) \gamma + C(n) \beta_{0} + D(n) \beta_{1}
 \end{gather*}
 
