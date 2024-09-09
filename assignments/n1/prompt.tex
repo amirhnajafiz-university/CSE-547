@@ -4,6 +4,7 @@
 \usepackage{amsmath, amssymb, graphicx}
 \usepackage{array}
 \usepackage{geometry}
+\usepackage{float}
 
 % global settings
 \geometry{a4paper, margin=1in}
@@ -79,6 +80,72 @@ To test our answer:
 
 \section*{Question 3}
 \subsection*{3). 1.16}
+First we are going to simplify our recurrence function to use the repertoire method.
+\begin{gather*}
+    g(1) = \alpha \text{ $(n=0)$} \\
+    g(2n+j) = 3g(n) + \gamma n + \beta_{j} \text{ $(n \geq 1, j=0,1)$} \to \\
+    g(2n) = 3g(n) + \gamma n + \beta_{0} \\
+    g(2n+1) = 3g(n) + \gamma n + \beta_{1} \\
+    \Rightarrow g(n) = A(n) \alpha + B(n) \gamma + C(n) \beta_{0} + D(n) \beta_{1}
+\end{gather*}
+
+Now first we are going to assign $\gamma = 0$, then we have:
+\begin{gather*}
+    g(1) = \alpha \\
+    g(2n) = 3g(n) + \beta_{0} \\
+    g(2n+1) = 3g(n) + \beta_{1} \\
+    \Rightarrow g(n) = A(n) \alpha + C(n) \beta_{0} + D(n) \beta_{1}
+\end{gather*}
+
+After removing gamma, now we are going to solve this three-parameters equation by using repertoire method.
+First we are finding $g(n)$ by using small values of $n$. As in the table bellow, we are going to start
+from $n=1$ to $n=11$.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c}
+        $n$ & $g(n)$ \\
+        \hline
+        $1$ & $\alpha$ \\
+        \hline
+        $2$ & $3\alpha + \beta_{0}$ \\
+        $3$ & $3\alpha + \beta_{1}$ \\
+        \hline
+        $4$ & $9\alpha + 4\beta_{0}$ \\
+        $5$ & $9\alpha + 3\beta_{0} + \beta_{1}$ \\
+        $6$ & $9\alpha + \beta_{0} + 3\beta_{1}$ \\
+        $7$ & $9\alpha + 4\beta_{1}$ \\
+        \hline
+        $8$ & $27\alpha + 13\beta_{0}$ \\
+        $9$ & $27\alpha + 12\beta_{0} + \beta_{1}$ \\
+        $10$ & $27\alpha + 10\beta_{0} + 3\beta_{1}$ \\
+        $11$ & $27\alpha + 9\beta_{0} + 4\beta_{1}$
+    \end{tabular}
+    \caption{general table for small values of $n$}
+    \label{tab:sample}
+\end{table}
+
+As it looks, we are going to have:
+\begin{gather*}
+    A(n) = 3^m, \text{where } n = 2^m + l \text{ and } 0 \leq l < 2^m \\
+    A(n) - C(n) - D(n) = 1 \\
+    A(n) + C(n) = n
+\end{gather*}
+
+Therefore, we have $A(n), C(n), and D(n)$. Now for finding $B(n)$, we are going to use $g(n)=n$.
+\begin{gather*}
+    n = A(n) \alpha + B(n) \gamma + C(n) \beta_{0} + D(n) \beta_{1} \\
+    \text{a satisfying value set is } (\alpha, \gamma, \beta_{0}, \beta_{1}) = (1, -1, 0, 1) \\
+    \to n = A(n) - B(n) + D(n) \to B(n) = A(n) + D(n) - n
+\end{gather*}
+
+Now that we have every parameter written based on others, we have:
+\begin{gather*}
+    A(n) = 3^m, \text{where } n = 2^m + l \text{ and } 0 \leq l < 2^m \\
+    C(n) = n - 3^m = 2^m - 3^m + l \\
+    D(n) = A(n) - 1 - C(n) = 3^m - 1 - 2^m + 3^m - l = 2 \time 3^m - 2^m - l \\
+    B(n) = A(n) + D(n) - n = 3^m + 2 \time 3^m - 2^m - l - n = 3^{m+1} - 2^{m+1} -2l
+\end{gather*}
+
 
 \section*{Question 4}
 \subsection*{4). 1.21}
@@ -86,7 +153,7 @@ In order to see if an answer exists for this problem, first we are going to chec
 To meet the condition of our problem, we need to make sure that our position is always in $(n, n+1, \ldots, 2n)$th positions. Now let's see what are the available positions in each step:
 \begin{table}[h]
     \centering
-    \begin{tabular}{|c|c|c|}
+    \begin{tabular}{|c|c|}
         \hline
         step & available positions \\
         \hline
