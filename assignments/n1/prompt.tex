@@ -213,6 +213,29 @@ As for this problem:
 
 \section*{Question 6}
 \subsection*{6). 2.21}
+To solve these summations using perturbation method, we need to take the first and last element out of the summation. Let's start from
+$S_{n}$ because the two other summations are an extended version of it.
+\begin{gather*}
+    S_{n} = \sum_{k=0}^n {-1}^{n-k} \\
+    S_{n+1} = 1 - S_{n} = {-1}^{n+1} + \sum_{k=1}^{n+1} {-1}^{n+1-k} = {-1}^{n+1} + \sum_{k=0}^n {-1}^{n-k} \\
+    = {-1}^{n+1} + S_{n} \Rightarrow 2S_{n} = 1 - {-1}^{n+1} \to S_{n} = \frac{1}{2} (1 + {-1}^n) \\
+    S_{n} = \begin{cases} 0 & \text{if n is odd} \\ 1 & \text{if n is even} \end{cases}
+\end{gather*}
+
+Now we are going to solve $T_{n}$ and $U_{n}$ with the same approach:
+\begin{gather*}
+    T_{n} = \sum_{k=0}^n {-1}^{n-k} k \\
+    T_{n+1} = n + 1 - T_{n} = \sum_{k=0}^{n} {-1}^{n-k} (k+1) = \sum_{k=0}^n {-1}^{n-k} + \sum_{k=0}^n {-1}^{n-k} k \\
+    = S_{n} + T_{n} \Rightarrow 2T_{n} = n + 1 - S_{n} \to T_{n} = \frac{1}{2} (n + 1 - S_{n}) \\
+    T_{n} = \begin{cases} \frac{n+1}{2} & \text{if n is odd} \\ \frac{n}{2} & \text{if n is even} \end{cases}
+\end{gather*}
+
+\begin{gather*}
+    U_{n} = \sum_{k=0}^n {-1}^{n-k} k^2 \\
+    U_{n+1} = {(n + 1)}^2 - U_{n} = \sum_{k=0}^{n} {-1}^{n-k+1} {(k+1)}^2 = \sum_{k=0}^n {-1}^{n-k} + \sum_{k=0}^n {-1}^{n-k} {(k+1)}^2 \\
+    = S_{n} + 2T_{n} + U_{n} \Rightarrow 2U_{n} = n^2 + 2n + 1 - 2T_{n} - S_{n} \\
+    T_{n} = \begin{cases} n^2 + n & \text{if n is odd} \\ n^2 + n & \text{if n is even} \end{cases}
+\end{gather*}
 
 \section*{Question 7}
 \subsection*{9).}
