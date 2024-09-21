@@ -1,0 +1,346 @@
+\documentclass[12pt]{article}
+
+% packages in use
+\usepackage{amsmath, amssymb, graphicx}
+\usepackage{array}
+\usepackage{geometry}
+\usepackage{float}
+
+% global settings
+\geometry{a4paper, margin=1in}
+\setlength{\parindent}{0pt}
+
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+\begin{document}
+
+% title section
+\begin{center}
+    {\LARGE\textbf{CSE 547: Homework One}} \\[1em]
+    {\large Amirhossein Najafizadeh} \\[1em]
+    Semester: Fall 2024 \\ 
+    SBU ID: 116715544 \\
+    Email: Amirhossein.Najafizadeh@stonybrook.edu \\[1em]
+    \noindent\rule{\textwidth}{0.6pt}
+\end{center}
+
+% answer sheet
+\section*{Question 1}
+\subsection*{1). 1.10}
+First we are going to prove that $Q_{n}$ is equal to $2R_{n-1}+1$. Let's assume that we want to go from $A$ to $B$ by using reverse algorithm. In this case our available moves are:
+\begin{gather*}
+    B \to A \\
+    A \to C \\
+    C \to B
+\end{gather*}
+
+Our approach is going to be like the Tower of Hanoi's solution:
+\begin{gather*}
+    \text{move} (n-1) : A \to C \Rightarrow R_{n-1} \\
+    \text{move the largest disk} : A \to C \to B \Rightarrow 1 \\
+    \text{move} (n-1) : C \to A \Rightarrow R_{n-1} \\
+    \text{overall cost is} : R_{n-1} + 1 + R_{n-1} = 2R_{n-1} + 1
+\end{gather*}
+
+Now that we proved the first relation, we are going to use the same approach to prove that $R_{n}$ is equal to $Q_{n}+Q_{n-1}+1$. Assume we want to go back to $B$ from $A$:
+\begin{gather*}
+    \text{move} (n-1) : B \to A \Rightarrow R_{n-1} \\
+    \text{move} (n-1) : A \to C \Rightarrow R_{n-1} \\
+    \text{move the largest disk} : B \to A \Rightarrow 1 \\
+    \text{move n-1 disks (it's like two reverse move in order)} : C \to B \to A \Rightarrow 2R_{n-2}+2 \\
+    \text{overall cost is} : R_{n-1} + R_{n-1} + 1 + 2R_{n-2} + 2 \\= (2R_{n-1} + 1) + (2R_{n-2} + 1) + 1 = Q_{n} + Q_{n-1} + 1
+\end{gather*}
+
+Not to mention that in all cases when $n=0$, then we don't have any disks to move. Therefore, the equations for $n=0$ remains as $R_{0}=Q_{0}=0$.
+
+\section*{Question 2}
+\subsection*{2). 1.14}
+As this is like the \textit{Line in the plane} problem, we are going to go with the same approach.
+\begin{gather*}
+    P(n) = P(n-1) + \text{new spaces created by adding the $n$th plane}
+\end{gather*}
+
+Now, for counting the new spaces created by adding the new plane, the nth plane can intersect each of the previous $n-1$ planes in a line.
+These intersections divide nth plane into new spaces. So, it is a combination of the new and old planes. Therefore:
+\begin{gather*}
+    P(n) = P(n-1) + \begin{pmatrix} n \\ 2 \end{pmatrix} + n + 1 \\
+    P(n) = P(n-1) + \frac{n \times (n-1)}{2} + n + 1
+\end{gather*}
+
+For solving $P(n)$, we are going to use the \textit{Line in the plane} solution:
+\begin{gather*}
+    P(n) = P(n-1) + \frac{n \times (n-1)}{2} + n + 1 \\
+    = P(n-2) + \frac{(n-1) \times (n-2)}{2} + (n-1) + 1 + \frac{n \times (n-1)}{2} + n + 1  \\
+    = P(n-3) + \frac{(n-2) \times (n-3)}{2} + (n-2) + 1 + \frac{(n-1) \times (n-2)}{2} + (n-1) + 1 + \frac{n \times (n-1)}{2} + n + 1  \\
+    = 1 + \sum_{j=0}^n 1 + \sum_{j=0}^n \frac{j}{2} + \sum_{j=0}^n \begin{pmatrix} n-j \\ 2 \end{pmatrix} \\
+    = 1 + n + \frac{n \times (n-1)}{2} + \frac{n \times (n-1) \times (n-2)}{2 \times 3}
+\end{gather*}
+
+To test our answer:
+\begin{gather*}
+    P(1) = 1 \\
+    P(2) = 1 + 2 + 1 = 4 \\
+    P(3) = 1 + 3 + \frac{3 \times (3-1)}{2} + \frac{3 \times (3-1) \times (3-2)}{6} = 8
+\end{gather*}
+
+\section*{Question 3}
+\subsection*{3). 1.16}
+First we are going to simplify our recurrence function to use the repertoire method.
+\begin{gather*}
+    g(1) = \alpha \text{ $(n=0)$} \\
+    g(2n+j) = 3g(n) + \gamma n + \beta_{j} \text{ $(n \geq 1, j=0,1)$} \\
+    \to g(2n) = 3g(n) + \gamma n + \beta_{0} \\
+    \to g(2n+1) = 3g(n) + \gamma n + \beta_{1} \\
+    \Rightarrow g(n) = A(n) \alpha + B(n) \gamma + C(n) \beta_{0} + D(n) \beta_{1}
+\end{gather*}
+
+Now first we are going to assign $\gamma = 0$, then we have:
+\begin{gather*}
+    g(1) = \alpha \\
+    g(2n) = 3g(n) + \beta_{0} \\
+    g(2n+1) = 3g(n) + \beta_{1} \\
+    \Rightarrow g(n) = A(n) \alpha + C(n) \beta_{0} + D(n) \beta_{1}
+\end{gather*}
+
+After removing gamma, now we are going to solve this three-parameters equation by using repertoire method.
+First we are finding $g(n)$ by using small values of $n$. As in the table bellow, we are going to start
+from $n=1$ to $n=11$.
+\begin{table}[H]
+    \centering
+    \begin{tabular}{c|c}
+        $n$ & $g(n)$ \\
+        \hline
+        $1$ & $\alpha$ \\
+        \hline
+        $2$ & $3\alpha + \beta_{0}$ \\
+        $3$ & $3\alpha + \beta_{1}$ \\
+        \hline
+        $4$ & $9\alpha + 4\beta_{0}$ \\
+        $5$ & $9\alpha + 3\beta_{0} + \beta_{1}$ \\
+        $6$ & $9\alpha + \beta_{0} + 3\beta_{1}$ \\
+        $7$ & $9\alpha + 4\beta_{1}$ \\
+        \hline
+        $8$ & $27\alpha + 13\beta_{0}$ \\
+        $9$ & $27\alpha + 12\beta_{0} + \beta_{1}$ \\
+        $10$ & $27\alpha + 10\beta_{0} + 3\beta_{1}$ \\
+        $11$ & $27\alpha + 9\beta_{0} + 4\beta_{1}$
+    \end{tabular}
+    \caption{general table for small values of $n$}
+    \label{tab:sample}
+\end{table}
+
+As it looks, we are going to have:
+\begin{gather*}
+    A(n) = 3^m, \text{where } n = 2^m + l \text{ and } 0 \leq l < 2^m \\
+    A(n) - C(n) - D(n) = 1 \\
+    A(n) + C(n) = n
+\end{gather*}
+
+Therefore, we have $A(n), C(n), and D(n)$. Now for finding $B(n)$, we are going to use $g(n)=n$.
+\begin{gather*}
+    n = A(n) \alpha + B(n) \gamma + C(n) \beta_{0} + D(n) \beta_{1} \\
+    \text{a satisfying value set is } (\alpha, \gamma, \beta_{0}, \beta_{1}) = (1, -1, 0, 1) \\
+    \to n = A(n) - B(n) + D(n) \to B(n) = A(n) + D(n) - n
+\end{gather*}
+
+Now that we have every parameter written based on others, we have:
+\begin{gather*}
+    A(n) = 3^m, \text{where } n = 2^m + l \text{ and } 0 \leq l < 2^m \\
+    C(n) = n - 3^m = 2^m - 3^m + l \\
+    D(n) = A(n) - 1 - C(n) = 3^m - 1 - 2^m + 3^m - l = 2 \time 3^m - 2^m - l \\
+    B(n) = A(n) + D(n) - n = 3^m + 2 \time 3^m - 2^m - l - n = 3^{m+1} - 2^{m+1} -2l
+\end{gather*}
+
+
+\section*{Question 4}
+\subsection*{4). 1.21}
+In order to see if an answer exists for this problem, first we are going to check what is our position after $k$th step. We start from number 1 and each time we move $m$ places to kill the person on that position.
+To meet the condition of our problem, we need to make sure that our position is always in $(n, n+1, \ldots, 2n)$th positions. Now let's see what are the available positions in each step:
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        step & available positions \\
+        \hline
+        $1$ & $P(1): m \mod 2n \in (n, \ldots, 2n)$ \\
+        \hline
+        $2$ & $P(2): P(1) + m \mod {2n-1} \in (n, \ldots, 2n-1)$ \\
+        \hline
+        $3$ & $P(3): P(2) + m \mod {2n-2} \in (n, \ldots, 2n-2)$ \\
+        \hline
+        $\ldots$ & $\ldots$ \\
+        \hline
+        $k$ & $P(k): P(k-1) + m \mod {2n-k+1} \in (n, \ldots, 2n-k+1)$ \\
+        \hline
+    \end{tabular}
+    \caption{available positions after each step}
+    \label{tab:sample}
+\end{table}
+
+In general:
+\begin{gather*}
+    P(k) = P(k-1) + m \mod {(2n-k+1)} \\
+    = P(k-2) + m \mod {(2n-k)} + m \mod {(2n-k+1)} \\
+    = m \mod 2n + m \mod 2n + m \mod {(2n-1)} + \ldots
+\end{gather*}
+
+Based on the available positions, $m$ should be a number that $P(k) \text{is always in} [n+1, 2n-k]$. To meet that, it needs a common multiple with each number
+in the equation. Therefore, $m$ can be any number that is in the common multiple of number $n+1, n+2, \ldots, 2n$.
+
+\section*{Question 5}
+\subsection*{5). 2.14}
+First we try to convert our summation:
+\begin{gather*}
+    \sum_{k=0}^n k2^k \to \sum_{1 \leq j \leq k \leq n } 2^k \\
+    \text{($\RNum{1}$) we know that: } \sum_{j=0}^n 1 = n \\
+    \text{therefore, we can replace the innser $k$ with ($\RNum{1}$): } k = \sum_{j=0}^k 1 \\
+    S_{n} = \sum_{1 \leq j \leq k \leq n} 2^k
+\end{gather*}
+
+Now to solve the problem, according to the textbook, we have:
+\begin{gather*}
+    \text{$(\RNum{1})$ } 2S_{UT} = \sum_{1 \leq j,k \leq n} a_{j}a_{k} - \sum_{1 \leq j=k \leq n} a_{j}a_{k} \\
+    \text{$(\RNum{2})$ } \sum_{k=0}^n 2^k = 2^{n+1} - 1
+\end{gather*}
+
+As for this problem:
+\begin{gather*}
+    2S_{UT} = \sum{1 \leq j,k \leq n} 2^k - \sum{1 \leq j=k \leq n} 2^k \\
+    \text{$(\RNum{1}), (\RNum{2})$ } 2S_{UT} = n2^{n+1} - 1 - (2^{n+1} + 1) \\
+    2S_{UT} = n2^{n} \times 2 - 2^n \times 2 - 2 \\
+    S_{UT} = S_{n} = n2^{n} - 2^n - 1 
+\end{gather*}
+
+\section*{Question 6}
+\subsection*{6). 2.21}
+To solve these summations using perturbation method, we need to take the first and last element out of the summation. Let's start from
+$S_{n}$ because the two other summations are an extended version of it.
+\begin{gather*}
+    S_{n} = \sum_{k=0}^n {-1}^{n-k} \\
+    S_{n+1} = 1 - S_{n} = {-1}^{n+1} + \sum_{k=1}^{n+1} {-1}^{n+1-k} = {-1}^{n+1} + \sum_{k=0}^n {-1}^{n-k} \\
+    = {-1}^{n+1} + S_{n} \Rightarrow 2S_{n} = 1 - {-1}^{n+1} \to S_{n} = \frac{1}{2} (1 + {-1}^n) \\
+    S_{n} = \begin{cases} 0 & \text{if n is odd} \\ 1 & \text{if n is even} \end{cases}
+\end{gather*}
+
+Now we are going to solve $T_{n}$ and $U_{n}$ with the same approach:
+\begin{gather*}
+    T_{n} = \sum_{k=0}^n {-1}^{n-k} k \\
+    T_{n+1} = n + 1 - T_{n} = \sum_{k=0}^{n} {-1}^{n-k} (k+1) = \sum_{k=0}^n {-1}^{n-k} + \sum_{k=0}^n {-1}^{n-k} k \\
+    = S_{n} + T_{n} \Rightarrow 2T_{n} = n + 1 - S_{n} \to T_{n} = \frac{1}{2} (n + 1 - S_{n}) \\
+    T_{n} = \begin{cases} \frac{n+1}{2} & \text{if n is odd} \\ \frac{n}{2} & \text{if n is even} \end{cases}
+\end{gather*}
+
+\begin{gather*}
+    U_{n} = \sum_{k=0}^n {-1}^{n-k} k^2 \\
+    U_{n+1} = {(n + 1)}^2 - U_{n} = \sum_{k=0}^{n} {-1}^{n-k+1} {(k+1)}^2 = \sum_{k=0}^n {-1}^{n-k} + \sum_{k=0}^n {-1}^{n-k} {(k+1)}^2 \\
+    = S_{n} + 2T_{n} + U_{n} \Rightarrow 2U_{n} = n^2 + 2n + 1 - 2T_{n} - S_{n} \\
+    T_{n} = \begin{cases} n^2 + n & \text{if n is odd} \\ n^2 + n & \text{if n is even} \end{cases}
+\end{gather*}
+
+\section*{Question 7}
+\subsection*{9).}
+To solve this problem, we are going to expand our recurrence relation:
+\begin{gather*}
+    T(n) = T(\frac{N}{2}) + n \to n = 2^k \\
+    T(2^k) = T(2^{k-1}) + 2^k = T(2^{k-2}) + 2^{k-1} + 2^k + \ldots \\
+    T(2^k) = 1 + 2 + 4 + \cdots + 2^k = \sum_{j=0}^k 2^j
+\end{gather*}
+
+For a geometric sequence we have:
+\begin{gather*}
+    S_{n} = \frac{a_{0}(r^n-1)}{r-1}
+\end{gather*}
+
+In this case, for $a_{0}=1$ and ${r=2}$ we have:
+\begin{gather*}
+    S_{n} = 2^{n+1} - 1
+\end{gather*}
+
+Therefore:
+\begin{gather*}
+    T(2^k) = 2^{k+1} - 1 = 2 \times 2^k - 1 \\
+    T(n) = 2n - 1
+\end{gather*}
+
+
+\section*{Question 8}
+\subsection*{10).}
+In order to prove this equation, we are going to use a \textit{mathematical induction}. In the Fibonacci sequence we have:
+\begin{gather*}
+    F_{n} = F_{n-1} + F_{n-2} \\
+    F_{0}=0, F_{1}=1, F_{2}=1
+\end{gather*}
+
+For $n=1$ we have:
+\begin{gather*}
+    \begin{bmatrix}
+        F_{2} & F_{1} \\
+        F_{1} & F_{0}
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        1 & 1 \\
+        1 & 0
+    \end{bmatrix}
+    =
+    \left(\begin{bmatrix}
+        1 & 1 \\
+        1 & 0
+    \end{bmatrix}\right)^1
+\end{gather*}
+
+Now let's assume for $n-1$ we have:
+\begin{gather*}
+    \begin{bmatrix}
+        F_{n} & F_{n-1} \\
+        F_{n-1} & F_{n-2}
+    \end{bmatrix}
+    =
+    \left(\begin{bmatrix}
+    1 & 1 \\
+    1 & 0
+    \end{bmatrix}\right)^{n-1}
+\end{gather*}
+
+Now we are going to multiply both sides by \( \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix} \):
+\begin{gather*}
+    \begin{bmatrix}
+        F_{n} & F_{n-1} \\
+        F_{n-1} & F_{n-2}
+    \end{bmatrix}
+    \times
+    \begin{bmatrix}
+        1 & 1 \\
+        1 & 1
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        F_{n}+F_{n-1} & F_{n} \\
+        F_{n-1}+F_{n-2} & F_{n-1}
+    \end{bmatrix}
+    =
+    \begin{bmatrix}
+        F_{n+1} & F_{n} \\
+        F_{n} & F_{n-1}
+    \end{bmatrix}
+    =
+    \left(\begin{bmatrix}
+    1 & 1 \\
+    1 & 0
+    \end{bmatrix}\right)^{n}
+\end{gather*}
+
+And now that we proved the $n$th step, we can say by the power of \textit{mathematical induction}:
+\begin{gather*}
+    \begin{bmatrix}
+        F_{n+1} & F_{n} \\
+        F_{n} & F_{n-1}
+    \end{bmatrix}
+    =
+    \left(\begin{bmatrix}
+    1 & 1 \\
+    1 & 0
+    \end{bmatrix}\right)^{n}
+\end{gather*}
+
+\end{document}
