@@ -10,6 +10,10 @@ compile:
 view:
 	xdvi $(NAME).dvi &
 
+# Clean the extra files and outputs
+clean:
+	rm *.aux *.dvi *.log *.out
+
 # Export to pdf
 pdf:
 	pdflatex $(FILE)
