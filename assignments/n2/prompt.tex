@@ -27,31 +27,41 @@
 % answer sheet
 \section*{Question 1}
 \subsection*{1). 2.22}
-First we are going to prove that $Q_{n}$ is equal to $2R_{n-1}+1$. Let's assume that we want to go from $A$ to $B$ by using reverse algorithm. In this case our available moves are:
+Let's review Lagrange's identity first:
 \begin{gather*}
-    B \to A \\
-    A \to C \\
-    C \to B
+    \sum_{1 \leq j < k \leq n} {(a_{j}b_{k} - a_{k}b_{j})}^2 = (\sum_{k=1}^n {a_{k}}^2)(\sum_{k=1}^n {b_{k}}^2) - {(\sum_{k=1}^n a_{k}b_{k})}^2
 \end{gather*}
 
-Our approach is going to be like the Tower of Hanoi's solution:
+First we are going to prove Lagrange's identity, after that we are going find an identity
+for the more general double sum. We are going to expand each part of the equation, then combine
+everything to together.
 \begin{gather*}
-    \text{move} (n-1) : A \to C \Rightarrow R_{n-1} \\
-    \text{move the largest disk} : A \to C \to B \Rightarrow 1 \\
-    \text{move} (n-1) : C \to A \Rightarrow R_{n-1} \\
-    \text{overall cost is} : R_{n-1} + 1 + R_{n-1} = 2R_{n-1} + 1
+    \text{($\RNum{1}$) } {(\sum_{i=1}^n a_{i}b_{i})}^2 = \sum_{i=1}^n \sum_{j=1}^n a_{i}b_{i}a_{j}b_{j} = \sum_{i=1}^n {a_{i}}^2 {b_{i}}^2 + 2 \sum_{1 \leq i < j \leq n}^n (a_{i}b_{i}a_{j}b_{j}) \\
+    \\
+    \text{($\RNum{2}$) } (\sum_{i=1}^n {a_{i}}^2)(\sum_{i=1}^n {b_{i}}^2) = \sum_{i=1}^n {a_{i}}^2 {b_{i}}^2 + \sum_{1 \leq i < j \leq n} ({a_{i}}^2 {b_{j}}^2 + {a_{j}}^2 {b_{i}}^2) \\
+    \\
+    \text{($\RNum{3}$) } - \sum_{1 \leq i < j \leq n} {(a_{i}b_{j} - a_{j}b_{i})}^2 = - \sum_{1 \leq i < j \leq n} ({a_{i}}^2 {b_{j}}^2 - 2a_{i}b_{i}a_{j}b_{j} + {a_{j}}^2 {b_{i}}^2) \\
+    \\
+    \text{($\RNum{2}$) + ($\RNum{3}$) } \sum_{i=1}^n {a_{i}}^2 {b_{i}}^2 + \sum_{1 \leq i < j \leq n} ({a_{i}}^2 {b_{j}}^2 + {a_{j}}^2 {b_{i}}^2) - \sum_{1 \leq i < j \leq n} ({a_{i}}^2 {b_{j}}^2 - 2a_{i}b_{i}a_{j}b_{j} + {a_{j}}^2 {b_{i}}^2) \\
+    = \sum_{i=1}^n {a_{i}}^2 {b_{i}}^2 + 2 \sum_{1 \leq i < j \leq n} a_{i}b_{i}a_{j}b_{j}
 \end{gather*}
 
-Now that we proved the first relation, we are going to use the same approach to prove that $R_{n}$ is equal to $Q_{n}+Q_{n-1}+1$. Assume we want to go back to $B$ from $A$:
+Since we have $\RNum{1} = \RNum{2} + \RNum{3}$; it proves Lagrange's identity.
 \begin{gather*}
-    \text{move} (n-1) : B \to A \Rightarrow R_{n-1} \\
-    \text{move} (n-1) : A \to C \Rightarrow R_{n-1} \\
-    \text{move the largest disk} : B \to A \Rightarrow 1 \\
-    \text{move n-1 disks (it's like two reverse move in order)} : C \to B \to A \Rightarrow 2R_{n-2}+2 \\
-    \text{overall cost is} : R_{n-1} + R_{n-1} + 1 + 2R_{n-2} + 2 \\= (2R_{n-1} + 1) + (2R_{n-2} + 1) + 1 = Q_{n} + Q_{n-1} + 1
+    {(\sum_{i=1}^n a_{i}b_{i})}^2 = (\sum_{i=1}^n {a_{i}}^2)(\sum_{i=1}^n {b_{i}}^2) - \sum_{1 \leq i < j \leq n} {(a_{i}b_{j} - a_{j}b_{i})}^2 \\
+    \sum_{1 \leq i < j \leq n} {(a_{i}b_{j} - a_{j}b_{i})}^2 = (\sum_{i=1}^n {a_{i}}^2)(\sum_{i=1}^n {b_{i}}^2) - {(\sum_{i=1}^n a_{i}b_{i})}^2
 \end{gather*}
 
-Not to mention that in all cases when $n=0$, then we don't have any disks to move. Therefore, the equations for $n=0$ remains as $R_{0}=Q_{0}=0$.
+Now we are going to use it to find an identity for this summation:
+\begin{gather*}
+    S = \sum_{1 \leq j < k \leq n} ((a_{j}b_{k} - a_{k}b_{j})(A_{j}B_{k} - A_{k}B_{j}))
+\end{gather*}
+
+According to Lagrange's identity we have for ${a},{b},{A},{B}$:
+\begin{gather*}
+    (\sum_{i=1}^n a_{i}b_{i})(\sum_{i=1}^n A_{i}B_{i}) = (\sum_{i=1}^n a_{i}A_{i})(\sum_{i=1}^n b_{i}B_{i}) - \sum_{1 \leq j < k \leq n} (a_{j}b_{k} - a_{k}b_{j})(A_{j}B_{k} - A_{k}B_{j}) \\
+    \sum_{1 \leq j < k \leq n} (a_{j}b_{k} - a_{k}b_{j})(A_{j}B_{k} - A_{k}B_{j}) = (\sum_{i=1}^n a_{i}A_{i})(\sum_{i=1}^n b_{i}B_{i}) - (\sum_{i=1}^n a_{i}b_{i})(\sum_{i=1}^n A_{i}B_{i})
+\end{gather*}
 
 \section*{Question 2}
 \subsection*{3). 4.16}
