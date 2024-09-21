@@ -272,82 +272,24 @@ To say it in simple words, for each real number as $N$, one of the three $N$, $N
 
 \section*{Question 8}
 \subsection*{10).}
-In order to prove this equation, we are going to use a \textit{mathematical induction}. In the Fibonacci sequence we have:
+Let's say we have $a$ and $b$, first we rewrite them as their prime factors:
 \begin{gather*}
-    F_{n} = F_{n-1} + F_{n-2} \\
-    F_{0}=0, F_{1}=1, F_{2}=1
+    a = {p_{1}}^{e_{1}} {p_{2}}^{e_{2}} \ldots {p_{k}}^{e_{k}} \\
+    b = {p_{1}}^{f_{1}} {p_{2}}^{f_{2}} \ldots {p_{k}}^{f_{k}}
 \end{gather*}
 
-For $n=1$ we have:
+Now we are going to compute $\gcd(a, b)$ and $\operatorname{lcm}(a, b)$ with these values:
 \begin{gather*}
-    \begin{bmatrix}
-        F_{2} & F_{1} \\
-        F_{1} & F_{0}
-    \end{bmatrix}
-    =
-    \begin{bmatrix}
-        1 & 1 \\
-        1 & 0
-    \end{bmatrix}
-    =
-    \left(\begin{bmatrix}
-        1 & 1 \\
-        1 & 0
-    \end{bmatrix}\right)^1
+    \gcd(a, b) = {p_{1}}^{\min(e_{1}, f_{1})} {p_{2}}^{\min(e_{2}, f_{2})} \ldots {p_{k}}^{\min(e_{k}, f_{k})} \\
+    \operatorname{lcm}(a, b) = {p_{1}}^{\max(e_{1}, f_{1})} {p_{2}}^{\max(e_{2}, f_{2})} \ldots {p_{k}}^{\max(e_{k}, f_{k})} \\
+    \gcd(a, b) \times \operatorname{lcm}(a, b) = \prod_{i=1}^{k} {p_{i}}^{\min(e_{i}, f_{i})+\max(e_{i}, f_{i})}
 \end{gather*}
 
-Now let's assume for $n-1$ we have:
+Now we know that $\min(a, b) + \max(a, b) = a+b$, therefore we have:
 \begin{gather*}
-    \begin{bmatrix}
-        F_{n} & F_{n-1} \\
-        F_{n-1} & F_{n-2}
-    \end{bmatrix}
-    =
-    \left(\begin{bmatrix}
-    1 & 1 \\
-    1 & 0
-    \end{bmatrix}\right)^{n-1}
-\end{gather*}
-
-Now we are going to multiply both sides by \( \begin{bmatrix} 1 & 1 \\ 1 & 0 \end{bmatrix} \):
-\begin{gather*}
-    \begin{bmatrix}
-        F_{n} & F_{n-1} \\
-        F_{n-1} & F_{n-2}
-    \end{bmatrix}
-    \times
-    \begin{bmatrix}
-        1 & 1 \\
-        1 & 1
-    \end{bmatrix}
-    =
-    \begin{bmatrix}
-        F_{n}+F_{n-1} & F_{n} \\
-        F_{n-1}+F_{n-2} & F_{n-1}
-    \end{bmatrix}
-    =
-    \begin{bmatrix}
-        F_{n+1} & F_{n} \\
-        F_{n} & F_{n-1}
-    \end{bmatrix}
-    =
-    \left(\begin{bmatrix}
-    1 & 1 \\
-    1 & 0
-    \end{bmatrix}\right)^{n}
-\end{gather*}
-
-And now that we proved the $n$th step, we can say by the power of \textit{mathematical induction}:
-\begin{gather*}
-    \begin{bmatrix}
-        F_{n+1} & F_{n} \\
-        F_{n} & F_{n-1}
-    \end{bmatrix}
-    =
-    \left(\begin{bmatrix}
-    1 & 1 \\
-    1 & 0
-    \end{bmatrix}\right)^{n}
+    \gcd(a, b) \times \operatorname{lcm}(a, b) = \prod_{i=1}^{k} {p_{i}}^{e_{i} + f_{i}} \\
+    = \prod_{i=1}^{k} {p_{i}}^{e_{i}} {p_{i}}^{f_{i}} \\
+    = \prod_{i=1}^{k} {p_{i}}^{e_{i}} \times \prod_{i=1}^{k} {p_{i}}^{f_{i}} = a \times b
 \end{gather*}
 
 \end{document}
