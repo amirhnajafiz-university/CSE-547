@@ -16,7 +16,7 @@
 
 % title section
 \begin{center}
-    {\LARGE\textbf{CSE 547: Homework One}} \\[1em]
+    {\LARGE\textbf{CSE 547: Homework Two}} \\[1em]
     {\large Amirhossein Najafizadeh} \\[1em]
     Semester: Fall 2024 \\ 
     SBU ID: 116715544 \\
@@ -26,7 +26,7 @@
 
 % answer sheet
 \section*{Question 1}
-\subsection*{1). 1.10}
+\subsection*{1). 2.22}
 First we are going to prove that $Q_{n}$ is equal to $2R_{n-1}+1$. Let's assume that we want to go from $A$ to $B$ by using reverse algorithm. In this case our available moves are:
 \begin{gather*}
     B \to A \\
@@ -54,7 +54,7 @@ Now that we proved the first relation, we are going to use the same approach to 
 Not to mention that in all cases when $n=0$, then we don't have any disks to move. Therefore, the equations for $n=0$ remains as $R_{0}=Q_{0}=0$.
 
 \section*{Question 2}
-\subsection*{2). 1.14}
+\subsection*{3). 4.16}
 As this is like the \textit{Line in the plane} problem, we are going to go with the same approach.
 \begin{gather*}
     P(n) = P(n-1) + \text{new spaces created by adding the $n$th plane}
@@ -84,7 +84,7 @@ To test our answer:
 \end{gather*}
 
 \section*{Question 3}
-\subsection*{3). 1.16}
+\subsection*{4). 4.24}
 First we are going to simplify our recurrence function to use the repertoire method.
 \begin{gather*}
     g(1) = \alpha \text{ $(n=0)$} \\
@@ -153,7 +153,7 @@ Now that we have every parameter written based on others, we have:
 
 
 \section*{Question 4}
-\subsection*{4). 1.21}
+\subsection*{5). 4.26}
 In order to see if an answer exists for this problem, first we are going to check what is our position after $k$th step. We start from number 1 and each time we move $m$ places to kill the person on that position.
 To meet the condition of our problem, we need to make sure that our position is always in $(n, n+1, \ldots, 2n)$th positions. Now let's see what are the available positions in each step:
 \begin{table}[h]
@@ -188,7 +188,7 @@ Based on the available positions, $m$ should be a number that $P(k) \text{is alw
 in the equation. Therefore, $m$ can be any number that is in the common multiple of number $n+1, n+2, \ldots, 2n$.
 
 \section*{Question 5}
-\subsection*{5). 2.14}
+\subsection*{6). 4.30}
 First we try to convert our summation:
 \begin{gather*}
     \sum_{k=0}^n k2^k \to \sum_{1 \leq j \leq k \leq n } 2^k \\
@@ -212,7 +212,7 @@ As for this problem:
 \end{gather*}
 
 \section*{Question 6}
-\subsection*{6). 2.21}
+\subsection*{7). 4.38}
 To solve these summations using perturbation method, we need to take the first and last element out of the summation. Let's start from
 $S_{n}$ because the two other summations are an extended version of it.
 \begin{gather*}
@@ -239,29 +239,36 @@ Now we are going to solve $T_{n}$ and $U_{n}$ with the same approach:
 
 \section*{Question 7}
 \subsection*{9).}
-To solve this problem, we are going to expand our recurrence relation:
+If we have $m\text{ $|$ }n$ (meaning that $n$ can be divided by $m$), then n should be divided by all prime factors of n.
 \begin{gather*}
-    T(n) = T(\frac{N}{2}) + n \to n = 2^k \\
-    T(2^k) = T(2^{k-1}) + 2^k = T(2^{k-2}) + 2^{k-1} + 2^k + \ldots \\
-    T(2^k) = 1 + 2 + 4 + \cdots + 2^k = \sum_{j=0}^k 2^j
+    m = {p_{1}}^{a_{1}} \times {p_{2}}^{a_{2}} \ldots \times {p_{k}}^{a_{k}} \\
+    m \text{ $|$ } n \Rightarrow {p_{1}}^{a_{1}} \times {p_{2}}^{a_{2}} \ldots \times {p_{k}}^{a_{k}} \text{ $|$ } n \\
+    {p_{1}}^{a_{1}} \text{ $|$ } n \wedge {p_{2}}^{a_{2}} \text{ $|$ } n \ldots \wedge {p_{k}}^{a_{k}} \text{ $|$ } n
 \end{gather*}
 
-For a geometric sequence we have:
+In this problem, we can write number six as its prime factors $2 \times 3$. Therefore, we need need to prove that:
 \begin{gather*}
-    S_{n} = \frac{a_{0}(r^n-1)}{r-1}
+    2 \text{ $|$ } n \times (n+1) \times (n+2) \wedge 3 \text{ $|$ } n \times (n+1) \times (n+2)
 \end{gather*}
 
-In this case, for $a_{0}=1$ and ${r=2}$ we have:
+Since 2 and 3 are coprime, then we can prove each of them individually. Let's start with 2:
 \begin{gather*}
-    S_{n} = 2^{n+1} - 1
+    \text{if } n \equiv 0 \mod 2 \to n \times (n+1) \times (n+2) \equiv 0 \mod 2 \\
+    \text{if } n \equiv 1 \mod 2 \to n+1 \equiv 2 \equiv 0 \mod 2 \to n \times (n+1) \times (n+2) \equiv 0 \mod 2
 \end{gather*}
 
-Therefore:
+To say it in simple words, for each real number as $N$, one of the two $N$ or $N+1$ is divided by 2. As for 3:
 \begin{gather*}
-    T(2^k) = 2^{k+1} - 1 = 2 \times 2^k - 1 \\
-    T(n) = 2n - 1
+    \text{if } n \equiv 0 \mod 3 \to n \times (n+1) \times (n+2) \equiv 0 \mod 3 \\
+    \text{if } n \equiv 1 \mod 3 \to n+2 \equiv 3 \equiv 0 \mod 3 \to n \times (n+1) \times (n+2) \equiv 0 \mod 3 \\
+    \text{if } n \equiv 2 \mod 3 \to n+1 \equiv 3 \equiv 0 \mod 3 \to n \times (n+1) \times (n+2) \equiv 0 \mod 3
 \end{gather*}
 
+To say it in simple words, for each real number as $N$, one of the three $N$, $N+1$, or $N+2$ is divided by 3. Now we can say:
+\begin{gather*}
+    2 \text{ $|$ } n \times (n+1) \times (n+2) \wedge 3 \text{ $|$ } n \times (n+1) \times (n+2) \\
+    6 \text{ $|$ } n \times (n+1) \times (n+2)
+\end{gather*}
 
 \section*{Question 8}
 \subsection*{10).}
