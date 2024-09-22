@@ -120,62 +120,47 @@ Where $n$ is the total number of digits and $\nu_p(n)$ counts how many times $p$
 
 \section*{Question 4}
 \subsection*{5). 4.26}
-In order to see if an answer exists for this problem, first we are going to check what is our position after $k$th step. We start from number 1 and each time we move $m$ places to kill the person on that position.
-To meet the condition of our problem, we need to make sure that our position is always in $(n, n+1, \ldots, 2n)$th positions. Now let's see what are the available positions in each step:
-\begin{table}[h]
-    \centering
-    \begin{tabular}{|c|c|}
-        \hline
-        step & available positions \\
-        \hline
-        $1$ & $P(1): m \mod 2n \in (n, \ldots, 2n)$ \\
-        \hline
-        $2$ & $P(2): P(1) + m \mod {2n-1} \in (n, \ldots, 2n-1)$ \\
-        \hline
-        $3$ & $P(3): P(2) + m \mod {2n-2} \in (n, \ldots, 2n-2)$ \\
-        \hline
-        $\ldots$ & $\ldots$ \\
-        \hline
-        $k$ & $P(k): P(k-1) + m \mod {2n-k+1} \in (n, \ldots, 2n-k+1)$ \\
-        \hline
-    \end{tabular}
-    \caption{available positions after each step}
-    \label{tab:sample}
-\end{table}
-
-In general:
+We have a tree called Stern-Brocot tree. The idea is to start with the two fractions
+$(\frac{0}{1}, \frac{1}{0})$ which are $0$ and $\infty$. Then its going to repeat the following
+operation as many times:
 \begin{gather*}
-    P(k) = P(k-1) + m \mod {(2n-k+1)} \\
-    = P(k-2) + m \mod {(2n-k)} + m \mod {(2n-k+1)} \\
-    = m \mod 2n + m \mod 2n + m \mod {(2n-1)} + \ldots
+    \text{Insert } \frac{m + m`}{n + n`} \text{ between two adjacent fractions } \frac{m}{n} \text{ and } \frac{m`}{n`}
 \end{gather*}
 
-Based on the available positions, $m$ should be a number that $P(k) \text{is always in} [n+1, 2n-k]$. To meet that, it needs a common multiple with each number
-in the equation. Therefore, $m$ can be any number that is in the common multiple of number $n+1, n+2, \ldots, 2n$.
+In this tree, if $\frac{m}{n}$ and $\frac{m`}{n`}$ are consecutive fractions at any stage
+of the construction, we have:
+\begin{gather*}
+    m`n - mn` = 1
+\end{gather*}
+
+This relation is true initially $(1.1 - 0.0 = 1)$; and when we insert a new
+mediant $\frac{m + m`}{n + n`}$, the new cases that need to be checked are:
+\begin{gather*}
+    (m + m`)m - m(n + n`) = 1 \\
+    m`(n + n`) - (m + m`)n` = 1
+\end{gather*}
+
+Both of these equations are equivalent to the original condition that they replace. Therefore
+the given rule is invariant at all stages of the construction. Furthermore, if $\frac{m}{n} < \frac{m`}{n`}$
+and if all values are nonnegative, we can say that:
+\begin{gather*}
+    \frac{m}{n} < \frac{m + m`}{n + n`} < \frac{m`}{n`}
+\end{gather*}
+
+A mediant fraction isn't halfway between its progenitors, but it does lie somewhere
+in between. Therefore the construction preserves order, and we couldn't possibly
+get the same fraction in two differenct places.
+
+Now our $g(n)$ is a sub-tree of Stern-Brocot tree. When considering $g(n)$, it includes
+fractions $\frac{m}{n}$ such that $mn \leq N$. $g(n)$ includes only those
+fractions with specific constraints on ther numerators and denominators.
+As we navigate the Stern-Brocot tree, each level of the tree represents fractions with increasing denominators and numerators. The condition 
+$mn \leq N$ restricts this traversal to a certain range, forming a sub-tree of fractions that adhere to this rule.
+In this sub-tree, if $\frac{m}{n}$ precedes $\frac{m`}{n`}$, they maintain the property $m`n - mn` = 1$
+because they are generated from the mediants of adjacent fractions in the tree.
 
 \section*{Question 5}
 \subsection*{6). 4.30}
-First we try to convert our summation:
-\begin{gather*}
-    \sum_{k=0}^n k2^k \to \sum_{1 \leq j \leq k \leq n } 2^k \\
-    \text{($\RNum{1}$) we know that: } \sum_{j=0}^n 1 = n \\
-    \text{therefore, we can replace the innser $k$ with ($\RNum{1}$): } k = \sum_{j=0}^k 1 \\
-    S_{n} = \sum_{1 \leq j \leq k \leq n} 2^k
-\end{gather*}
-
-Now to solve the problem, according to the textbook, we have:
-\begin{gather*}
-    \text{$(\RNum{1})$ } 2S_{UT} = \sum_{1 \leq j,k \leq n} a_{j}a_{k} - \sum_{1 \leq j=k \leq n} a_{j}a_{k} \\
-    \text{$(\RNum{2})$ } \sum_{k=0}^n 2^k = 2^{n+1} - 1
-\end{gather*}
-
-As for this problem:
-\begin{gather*}
-    2S_{UT} = \sum{1 \leq j,k \leq n} 2^k - \sum{1 \leq j=k \leq n} 2^k \\
-    \text{$(\RNum{1}), (\RNum{2})$ } 2S_{UT} = n2^{n+1} - 1 - (2^{n+1} + 1) \\
-    2S_{UT} = n2^{n} \times 2 - 2^n \times 2 - 2 \\
-    S_{UT} = S_{n} = n2^{n} - 2^n - 1 
-\end{gather*}
 
 \section*{Question 6}
 \subsection*{7). 4.38}
