@@ -161,6 +161,81 @@ because they are generated from the mediants of adjacent fractions in the tree.
 
 \section*{Question 5}
 \subsection*{6). 4.30}
+Let \( n_1, n_2, \ldots, n_k \) be pairwise coprime integers, and let \( a_1, a_2, \ldots, a_k \) be any integers. Then there exists an integer \( x \) such that:
+\[
+x \equiv a_i \mod n_i \quad \text{for } i = 1, 2, \ldots, k
+\]
+
+Moreover, this solution \( x \) is unique modulo \( N \), where \( N = n_1 n_2 \cdots n_k \).
+We define \( N = n_1 n_2 \cdots n_k \) and for each \( i \), let:
+
+\[
+N_i = \frac{N}{n_i}
+\]
+
+Since the \( n_i \) are pairwise coprime, \( N_i \) is also coprime to \( n_i \) for each \( i \).
+
+By Bézout's identity, there exist integers \( b_i \) such that:
+
+\[
+N_i b_i \equiv 1 \mod n_i
+\]
+
+Therefore, for each \( i \), we can write:
+
+\[
+x_i = a_i N_i b_i
+\]
+
+Now, we can construct \( x \) as follows:
+
+\[
+x = \sum_{i=1}^k x_i = \sum_{i=1}^k a_i N_i b_i
+\]
+
+We will show that this \( x \) satisfies the congruences.
+
+For any \( j \):
+
+\[
+x \equiv \sum_{i=1}^k a_i N_i b_i \mod n_j
+\]
+
+Notice that \( N_i \equiv 0 \mod n_j \) for all \( i \neq j \), so:
+
+\[
+x \equiv a_j N_j b_j \mod n_j
+\]
+
+Since \( N_j b_j \equiv 1 \mod n_j \), we have:
+
+\[
+x \equiv a_j \mod n_j
+\]
+
+This shows that \( x \) satisfies all the congruences.
+
+Now that we proved there is an answer, we are going to prove that it is unique.
+
+Suppose there are two solutions \( x_1 \) and \( x_2 \) such that:
+
+\[
+x_1 \equiv a_i \mod n_i \quad \text{and} \quad x_2 \equiv a_i \mod n_i \quad \text{for all } i
+\]
+
+Then:
+
+\[
+x_1 - x_2 \equiv 0 \mod n_i
+\]
+
+for all \( i \). Let \( d = x_1 - x_2 \). This implies \( d \) is divisible by each \( n_i \). Since the \( n_i \) are pairwise coprime, \( d \) is divisible by their product \( N \):
+
+\[
+d \equiv 0 \mod N
+\]
+
+Hence, \( x_1 \equiv x_2 \mod N \), proving the uniqueness of the solution modulo \( N \).
 
 \section*{Question 6}
 \subsection*{7). 4.38}
