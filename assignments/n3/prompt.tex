@@ -27,6 +27,36 @@
 % answer sheet
 \section*{Question 1}
 \subsection*{1). 4.32}
+\textbf{Fermat's Little Theorem}:
+\[
+    n^{p-1} \equiv 1 \pmod{m}
+\]
+
+\textbf{Euler's Theorem}; let \( n \) and \( m \) be integers such that \(\gcd(n, m) = 1\). Then:
+\[ 
+    n^{\phi(m)} \equiv 1 \pmod{m}
+\]
+
+where \(\phi(m)\) is Euler's totient function. \\
+
+Consider the set of integers \( S = \{ a_1, a_2, \ldots, a_{\phi(m)} \} \) that are coprime to \( m \).
+Multiplying each element by \( n \), we get the set \( T = \{ na_1, na_2, \ldots, na_{\phi(m)} \} \).
+Since multiplication by \( n \) permutes the elements of \( S \) modulo \( m \), the products of the elements in both sets are congruent modulo \( m \):
+\[ 
+    a_1 a_2 \cdots a_{\phi(m)} \equiv (na_1)(na_2)\cdots(na_{\phi(m)}) \pmod{m} 
+\]
+
+This simplifies to:
+\[ 
+    a_1 a_2 \cdots a_{\phi(m)} \equiv n^{\phi(m)} a_1 a_2 \cdots a_{\phi(m)} \pmod{m}
+\]
+
+Since all \( a_i \) are coprime to \( m \), we can cancel them out:
+\[ 
+    1 \equiv n^{\phi(m)} \pmod{m}
+\]
+
+Thus, \textbf{Euler's Theorem} is proved.    
 
 \section*{Question 2}
 \subsection*{2). 4.33}
