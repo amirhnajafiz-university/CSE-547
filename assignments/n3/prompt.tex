@@ -33,6 +33,19 @@
 
 \section*{Question 3}
 \subsection*{3). 4.47}
+If $n^{m-1} \equiv 1 \pmod{m}$ and $n^{(m-1)/p} \not\equiv 1 \pmod{m}$ for all primes $p$ such that $p \mid (m-1)$, then $m$ is prime. \\
+
+Assume for contradiction that $m$ is composite. Then $m = ab$ for some integers $1 < a, b < m$.
+Consider the order of $n \mod m$, denoted as $d$. By definition, $d$ is the smallest positive integer such that $n^d \equiv 1 \pmod{m}$. \\
+
+From the condition $n^{m-1} \equiv 1 \pmod{m}$, it follows that $d \mid (m-1)$.
+For each prime divisor $p$ of $(m-1)$, we have $n^{(m-1)/p} \not\equiv 1 \pmod{m}$, implying that $d$ does not divide any proper divisor of $(m-1)$.
+Thus, the order $d$ must be exactly $m-1$. This means the powers $n^k \mod m$ for $1 \leq k < m$ are distinct. \\
+
+If $m = ab$, then by \textit{Fermat's Little Theorem}, for any integer coprime to a prime factor of $m$, the order should divide a smaller number than $m-1$.
+This contradicts our finding that the order is exactly $m-1$. \\
+
+Therefore, our assumption that $m$ is composite must be false. Hence, $m$ is prime.
 
 \section*{Question 4}
 \subsection*{4). 5.14}
