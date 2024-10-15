@@ -16,7 +16,7 @@
 
 % title section
 \begin{center}
-    {\LARGE\textbf{CSE 547: Homework Two}} \\[1em]
+    {\LARGE\textbf{CSE 547: Homework Three}} \\[1em]
     {\large Amirhossein Najafizadeh} \\[1em]
     Semester: Fall 2024 \\ 
     SBU ID: 116715544 \\
@@ -26,313 +26,30 @@
 
 % answer sheet
 \section*{Question 1}
-\subsection*{1). 2.22}
-Let's review Lagrange's identity first:
-\begin{gather*}
-    \sum_{1 \leq j < k \leq n} {(a_{j}b_{k} - a_{k}b_{j})}^2 = (\sum_{k=1}^n {a_{k}}^2)(\sum_{k=1}^n {b_{k}}^2) - {(\sum_{k=1}^n a_{k}b_{k})}^2
-\end{gather*}
-
-First we are going to prove Lagrange's identity, after that we are going find an identity
-for the more general double sum. We are going to expand each part of the equation, then combine
-everything to together.
-\begin{gather*}
-    \text{($\RNum{1}$) } {(\sum_{i=1}^n a_{i}b_{i})}^2 = \sum_{i=1}^n \sum_{j=1}^n a_{i}b_{i}a_{j}b_{j} = \sum_{i=1}^n {a_{i}}^2 {b_{i}}^2 + 2 \sum_{1 \leq i < j \leq n}^n (a_{i}b_{i}a_{j}b_{j}) \\
-    \\
-    \text{($\RNum{2}$) } (\sum_{i=1}^n {a_{i}}^2)(\sum_{i=1}^n {b_{i}}^2) = \sum_{i=1}^n {a_{i}}^2 {b_{i}}^2 + \sum_{1 \leq i < j \leq n} ({a_{i}}^2 {b_{j}}^2 + {a_{j}}^2 {b_{i}}^2) \\
-    \\
-    \text{($\RNum{3}$) } - \sum_{1 \leq i < j \leq n} {(a_{i}b_{j} - a_{j}b_{i})}^2 = - \sum_{1 \leq i < j \leq n} ({a_{i}}^2 {b_{j}}^2 - 2a_{i}b_{i}a_{j}b_{j} + {a_{j}}^2 {b_{i}}^2) \\
-    \\
-    \text{($\RNum{2}$) + ($\RNum{3}$) } \sum_{i=1}^n {a_{i}}^2 {b_{i}}^2 + \sum_{1 \leq i < j \leq n} ({a_{i}}^2 {b_{j}}^2 + {a_{j}}^2 {b_{i}}^2) - \sum_{1 \leq i < j \leq n} ({a_{i}}^2 {b_{j}}^2 - 2a_{i}b_{i}a_{j}b_{j} + {a_{j}}^2 {b_{i}}^2) \\
-    = \sum_{i=1}^n {a_{i}}^2 {b_{i}}^2 + 2 \sum_{1 \leq i < j \leq n} a_{i}b_{i}a_{j}b_{j}
-\end{gather*}
-
-Since we have $\RNum{1} = \RNum{2} + \RNum{3}$; it proves Lagrange's identity.
-\begin{gather*}
-    {(\sum_{i=1}^n a_{i}b_{i})}^2 = (\sum_{i=1}^n {a_{i}}^2)(\sum_{i=1}^n {b_{i}}^2) - \sum_{1 \leq i < j \leq n} {(a_{i}b_{j} - a_{j}b_{i})}^2 \\
-    \sum_{1 \leq i < j \leq n} {(a_{i}b_{j} - a_{j}b_{i})}^2 = (\sum_{i=1}^n {a_{i}}^2)(\sum_{i=1}^n {b_{i}}^2) - {(\sum_{i=1}^n a_{i}b_{i})}^2
-\end{gather*}
-
-Now we are going to use it to find an identity for this summation:
-\begin{gather*}
-    S = \sum_{1 \leq j < k \leq n} ((a_{j}b_{k} - a_{k}b_{j})(A_{j}B_{k} - A_{k}B_{j}))
-\end{gather*}
-
-According to Lagrange's identity we have for ${a},{b},{A},{B}$:
-\begin{gather*}
-    (\sum_{i=1}^n a_{i}b_{i})(\sum_{i=1}^n A_{i}B_{i}) = (\sum_{i=1}^n a_{i}A_{i})(\sum_{i=1}^n b_{i}B_{i}) - \sum_{1 \leq j < k \leq n} (a_{j}b_{k} - a_{k}b_{j})(A_{j}B_{k} - A_{k}B_{j}) \\
-    \sum_{1 \leq j < k \leq n} (a_{j}b_{k} - a_{k}b_{j})(A_{j}B_{k} - A_{k}B_{j}) = (\sum_{i=1}^n a_{i}A_{i})(\sum_{i=1}^n b_{i}B_{i}) - (\sum_{i=1}^n a_{i}b_{i})(\sum_{i=1}^n A_{i}B_{i})
-\end{gather*}
+\subsection*{1). 4.32}
 
 \section*{Question 2}
-\subsection*{3). 4.16}
-First of all, let's take a look at Euclid's theorem:
-\begin{gather*}
-    E_{n} = \prod_{i=1}^n p_{i} + 1 \text{ where $p_{i}$ is the $i$th prime number}
-\end{gather*}
-
-Now we are going to find a recursive definition for Euclid's numbers:
-\begin{gather*}
-    E_{n+1} = \prod_{i=1}^{n+1} p_{i} + 1 \\
-    E_{n+1} = p_{n+1} \prod_{i=1}^n p_{i} + 1 \\
-    E_{n+1} = E_{n} \times p_{n+1} + 1 \\
-    \Rightarrow E_{n} = E_{n-1} \times p_{n} + 1 \\
-    E_{n} = E_{1} \ldots E_{n-1} + 1
-\end{gather*}
-
-Now we are going to work on the sum of the reciprocals of the first $n$ Euclid number.
-\begin{gather*}
-    S_{n} = \sum_{i=0}^n \frac{1}{E_{i}} \\
-    = \frac{1}{E_{1}} + \cdots + \frac{1}{E_{n}} \\
-    = 1 - \frac{1}{E_{1} \ldots E_{n}} = 1 - \frac{1}{E_{n+1} - 1}
-\end{gather*}
+\subsection*{2). 4.33}
 
 \section*{Question 3}
-\subsection*{4). 4.24}
-Let's express $n$ in base $p$:
-\begin{gather*}
-    n = d_{k}p^k + d_{k-1}p^{k-1} + \cdots + d_{0} \\
-    \text{The sum of the digits is: } \nu_p(n) = d_{k} + d_{k-1} + \cdots + d_{0}
-\end{gather*}
-
-Let $e_p(n!)$ represent the sum of the digits of $n!$ in base $p$, and $\nu_p(n!)$ represent the highest power of $p$ dividing $n!$
-\begin{gather*}
-    e_p(n!) = \text{sum of the digits of } n! \text{ in base } p \\
-    \nu_p(n!) = \sum_{i=1}^{\infty} \left\lfloor \frac{n}{p^i} \right\rfloor \\
-    \nu_p(n) = \text{sum of the digits of } n \text{ in base } p
-\end{gather*}
-
-The term $\nu_p(n)$ adjusts the total count of digits by accounting for the contributions from the
-factors of $p$ in $n$. Now the term $\frac{\nu_p(n)}{p-1}$ represents how many full sets of $p$ are in $n$.
-Consider the contribution of a digit $d$ in position $m$ in base $p$. The contribution of this digit to $e_p(n!)$ is:
-
-\begin{gather*}
-    d \cdot (p^m + p^{m-1} + \cdot + p^0) = d \cdot \frac{p^{m+1} - 1}{p - 1}
-\end{gather*}
-
-This formula arises from the geometric series for summing powers of $p$.
-The sum of the digits of $n!$ in base $p$ can be expressed as:
-
-\begin{gather*}
-    e_p(n!) = n - \frac{\nu_p(n)}{p - 1}
-\end{gather*}
-
-Where $n$ is the total number of digits and $\nu_p(n)$ counts how many times $p$ divides into $n$.
+\subsection*{3). 4.47}
 
 \section*{Question 4}
-\subsection*{5). 4.26}
-We have a tree called Stern-Brocot tree. The idea is to start with the two fractions
-$(\frac{0}{1}, \frac{1}{0})$ which are $0$ and $\infty$. Then its going to repeat the following
-operation as many times:
-\begin{gather*}
-    \text{Insert } \frac{m + m`}{n + n`} \text{ between two adjacent fractions } \frac{m}{n} \text{ and } \frac{m`}{n`}
-\end{gather*}
-
-In this tree, if $\frac{m}{n}$ and $\frac{m`}{n`}$ are consecutive fractions at any stage
-of the construction, we have:
-\begin{gather*}
-    m`n - mn` = 1
-\end{gather*}
-
-This relation is true initially $(1.1 - 0.0 = 1)$; and when we insert a new
-mediant $\frac{m + m`}{n + n`}$, the new cases that need to be checked are:
-\begin{gather*}
-    (m + m`)m - m(n + n`) = 1 \\
-    m`(n + n`) - (m + m`)n` = 1
-\end{gather*}
-
-Both of these equations are equivalent to the original condition that they replace. Therefore
-the given rule is invariant at all stages of the construction. Furthermore, if $\frac{m}{n} < \frac{m`}{n`}$
-and if all values are nonnegative, we can say that:
-\begin{gather*}
-    \frac{m}{n} < \frac{m + m`}{n + n`} < \frac{m`}{n`}
-\end{gather*}
-
-A mediant fraction isn't halfway between its progenitors, but it does lie somewhere
-in between. Therefore the construction preserves order, and we couldn't possibly
-get the same fraction in two differenct places.
-
-Now our $g(n)$ is a sub-tree of Stern-Brocot tree. When considering $g(n)$, it includes
-fractions $\frac{m}{n}$ such that $mn \leq N$. $g(n)$ includes only those
-fractions with specific constraints on ther numerators and denominators.
-As we navigate the Stern-Brocot tree, each level of the tree represents fractions with increasing denominators and numerators. The condition 
-$mn \leq N$ restricts this traversal to a certain range, forming a sub-tree of fractions that adhere to this rule.
-In this sub-tree, if $\frac{m}{n}$ precedes $\frac{m`}{n`}$, they maintain the property $m`n - mn` = 1$
-because they are generated from the mediants of adjacent fractions in the tree.
+\subsection*{4). 5.14}
 
 \section*{Question 5}
-\subsection*{6). 4.30}
-Let \( n_1, n_2, \ldots, n_k \) be pairwise coprime integers, and let \( a_1, a_2, \ldots, a_k \) be any integers. Then there exists an integer \( x \) such that:
-\[
-x \equiv a_i \mod n_i \quad \text{for } i = 1, 2, \ldots, k
-\]
-
-Moreover, this solution \( x \) is unique modulo \( N \), where \( N = n_1 n_2 \cdots n_k \).
-We define \( N = n_1 n_2 \cdots n_k \) and for each \( i \), let:
-
-\[
-N_i = \frac{N}{n_i}
-\]
-
-Since the \( n_i \) are pairwise coprime, \( N_i \) is also coprime to \( n_i \) for each \( i \).
-
-By Bézout's identity, there exist integers \( b_i \) such that:
-
-\[
-N_i b_i \equiv 1 \mod n_i
-\]
-
-Therefore, for each \( i \), we can write:
-
-\[
-x_i = a_i N_i b_i
-\]
-
-Now, we can construct \( x \) as follows:
-
-\[
-x = \sum_{i=1}^k x_i = \sum_{i=1}^k a_i N_i b_i
-\]
-
-We will show that this \( x \) satisfies the congruences.
-
-For any \( j \):
-
-\[
-x \equiv \sum_{i=1}^k a_i N_i b_i \mod n_j
-\]
-
-Notice that \( N_i \equiv 0 \mod n_j \) for all \( i \neq j \), so:
-
-\[
-x \equiv a_j N_j b_j \mod n_j
-\]
-
-Since \( N_j b_j \equiv 1 \mod n_j \), we have:
-
-\[
-x \equiv a_j \mod n_j
-\]
-
-This shows that \( x \) satisfies all the congruences.
-
-Now that we proved there is an answer, we are going to prove that it is unique.
-
-Suppose there are two solutions \( x_1 \) and \( x_2 \) such that:
-
-\[
-x_1 \equiv a_i \mod n_i \quad \text{and} \quad x_2 \equiv a_i \mod n_i \quad \text{for all } i
-\]
-
-Then:
-
-\[
-x_1 - x_2 \equiv 0 \mod n_i
-\]
-
-for all \( i \). Let \( d = x_1 - x_2 \). This implies \( d \) is divisible by each \( n_i \). Since the \( n_i \) are pairwise coprime, \( d \) is divisible by their product \( N \):
-
-\[
-d \equiv 0 \mod N
-\]
-
-Hence, \( x_1 \equiv x_2 \mod N \), proving the uniqueness of the solution modulo \( N \).
+\subsection*{5). 5.16}
 
 \section*{Question 6}
-\subsection*{7). 4.38}
-First let's take a look at the equation:
-\begin{gather*}
-    \gcd((a^n - b^n), (a^m - b^m)) = a^{\gcd(n,m)} - b^{\gcd(n,m)} \\
-    a \perp b, a > b, 0 \leq m < n
-\end{gather*}
-
-Now we are going to check some lemmas before proving the equation. First, we know that:
-\begin{gather*}
-    \gcd(a, b) = \gcd(a, b - k \times a)
-\end{gather*}
-
-Next, we have a polynomial identity for $a^n - b^n$:
-\begin{gather*}
-    (a^n - b^n) = (a - b)(a^{n-1}b^0 + \cdots + a^0b^{n-1})
-\end{gather*}
-
-So let's assume that $r = n \mod m$. As the polynomial identity displayed, we can have:
-\begin{gather*}
-    (a^n - b^n) = (a^m - b^m)(a^{n-m}b^0 + \cdots + a^r b^{n-m-r}) + b^{m \left\lfloor \frac{n}{m} \right\rfloor} (a^r - b^r)
-\end{gather*}
-
-Now, we are going replace this in the first equation:
-\begin{gather*}
-    \gcd((a^m - b^m), (a^m - b^m)(a^{n-m}b^0 + \cdots + a^r b^{n-m-r}) + b^{m \left\lfloor \frac{n}{m} \right\rfloor} (a^r - b^r)) \\
-    = \gcd((a^m - b^m), b^{m \left\lfloor \frac{n}{m} \right\rfloor} (a^r - b^r))
-\end{gather*}
-
-Since we have $a \perp b$, it means that $b^{m \left\lfloor \frac{n}{m} \right\rfloor}$ has no common factors in this equation.
-So we are going to remove it and have:
-\begin{gather*}
-    \gcd((a^n - b^n), (a^m - b^m)) = \gcd((a^m - b^m), (a^r - b^r)) \text{ where $r = n \mod m$}
-\end{gather*}
-
-If we continue this approach, we can go until we reach $\gcd(m,n)$. Since the next number after that will
-be zero, we can prove the validation of our equation:
-\begin{gather*}
-    \gcd((a^n - b^n), (a^m - b^m)) = \gcd((a^m - b^m), (a^r - b^r)) \text{ where $r = n \mod m$} \\
-    \ldots
-    = \gcd((a^{\gcd(m,n)} - b^{\gcd(m,n)}, 0) = a^{\gcd(m,n)} - b^{\gcd(m,n)}
-\end{gather*}
+\subsection*{6). 5.37}
 
 \section*{Question 7}
-\subsection*{9).}
-If we have $m\text{ $|$ }n$ (meaning that $n$ can be divided by $m$), then n should be divided by all prime factors of n.
-\begin{gather*}
-    m = {p_{1}}^{a_{1}} \times {p_{2}}^{a_{2}} \ldots \times {p_{k}}^{a_{k}} \\
-    m \text{ $|$ } n \Rightarrow {p_{1}}^{a_{1}} \times {p_{2}}^{a_{2}} \ldots \times {p_{k}}^{a_{k}} \text{ $|$ } n \\
-    {p_{1}}^{a_{1}} \text{ $|$ } n \wedge {p_{2}}^{a_{2}} \text{ $|$ } n \ldots \wedge {p_{k}}^{a_{k}} \text{ $|$ } n
-\end{gather*}
-
-In this problem, we can write number six as its prime factors $2 \times 3$. Therefore, we need need to prove that:
-\begin{gather*}
-    2 \text{ $|$ } n \times (n+1) \times (n+2) \wedge 3 \text{ $|$ } n \times (n+1) \times (n+2)
-\end{gather*}
-
-Since 2 and 3 are coprime, then we can prove each of them individually. Let's start with 2:
-\begin{gather*}
-    \text{if } n \equiv 0 \mod 2 \to n \times (n+1) \times (n+2) \equiv 0 \mod 2 \\
-    \text{if } n \equiv 1 \mod 2 \to n+1 \equiv 2 \equiv 0 \mod 2 \to n \times (n+1) \times (n+2) \equiv 0 \mod 2
-\end{gather*}
-
-To say it in simple words, for each real number as $N$, one of the two $N$ or $N+1$ is divided by 2. As for 3:
-\begin{gather*}
-    \text{if } n \equiv 0 \mod 3 \to n \times (n+1) \times (n+2) \equiv 0 \mod 3 \\
-    \text{if } n \equiv 1 \mod 3 \to n+2 \equiv 3 \equiv 0 \mod 3 \to n \times (n+1) \times (n+2) \equiv 0 \mod 3 \\
-    \text{if } n \equiv 2 \mod 3 \to n+1 \equiv 3 \equiv 0 \mod 3 \to n \times (n+1) \times (n+2) \equiv 0 \mod 3
-\end{gather*}
-
-To say it in simple words, for each real number as $N$, one of the three $N$, $N+1$, or $N+2$ is divided by 3. Now we can say:
-\begin{gather*}
-    2 \text{ $|$ } n \times (n+1) \times (n+2) \wedge 3 \text{ $|$ } n \times (n+1) \times (n+2) \\
-    6 \text{ $|$ } n \times (n+1) \times (n+2)
-\end{gather*}
+\subsection*{7).}
 
 \section*{Question 8}
-\subsection*{10).}
-Let's say we have $a$ and $b$, first we rewrite them as their prime factors:
-\begin{gather*}
-    a = {p_{1}}^{e_{1}} {p_{2}}^{e_{2}} \ldots {p_{k}}^{e_{k}} \\
-    b = {p_{1}}^{f_{1}} {p_{2}}^{f_{2}} \ldots {p_{k}}^{f_{k}}
-\end{gather*}
+\subsection*{8).}
 
-Now we are going to compute $\gcd(a, b)$ and $\operatorname{lcm}(a, b)$ with these values:
-\begin{gather*}
-    \gcd(a, b) = {p_{1}}^{\min(e_{1}, f_{1})} {p_{2}}^{\min(e_{2}, f_{2})} \ldots {p_{k}}^{\min(e_{k}, f_{k})} \\
-    \operatorname{lcm}(a, b) = {p_{1}}^{\max(e_{1}, f_{1})} {p_{2}}^{\max(e_{2}, f_{2})} \ldots {p_{k}}^{\max(e_{k}, f_{k})} \\
-    \gcd(a, b) \times \operatorname{lcm}(a, b) = \prod_{i=1}^{k} {p_{i}}^{\min(e_{i}, f_{i})+\max(e_{i}, f_{i})}
-\end{gather*}
-
-Now we know that $\min(a, b) + \max(a, b) = a+b$, therefore we have:
-\begin{gather*}
-    \gcd(a, b) \times \operatorname{lcm}(a, b) = \prod_{i=1}^{k} {p_{i}}^{e_{i} + f_{i}} \\
-    = \prod_{i=1}^{k} {p_{i}}^{e_{i}} {p_{i}}^{f_{i}} \\
-    = \prod_{i=1}^{k} {p_{i}}^{e_{i}} \times \prod_{i=1}^{k} {p_{i}}^{f_{i}} = a \times b
-\end{gather*}
+\section*{Question 9}
+\subsection*{B1).}
 
 \end{document}

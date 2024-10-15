@@ -1,5 +1,5 @@
 # Define a variable for the LaTeX file
-FILE = ./assignments/n2/prompt.tex
+FILE = ./assignments/n3/prompt.tex
 NAME = prompt
 
 # Target for compiling the LaTeX file
