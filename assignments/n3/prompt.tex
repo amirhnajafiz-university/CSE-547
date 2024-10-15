@@ -39,6 +39,37 @@
 
 \section*{Question 5}
 \subsection*{5). 5.16}
+We want to evaluate the sum:
+
+\[
+S = \sum_{k=0}^{\infty} \binom{2a}{a+k} \binom{2b}{b+k} \binom{2c}{c+k} (-1)^k
+\]
+
+for nonnegative integers \(a\), \(b\), and \(c\). \\
+
+To solve this, we use a combinatorial identity involving binomial coefficients and alternating series. The identity is:
+
+\[
+\sum_{k=0}^{n} \binom{n}{k} \binom{m+k}{k} (-1)^k = \binom{m}{n}
+\]
+
+First, consider the sum of the first two binomial coefficients:
+
+\[
+\sum_{k=0}^{\infty} \binom{2a}{a+k} \binom{2b}{b+k} (-1)^k = \binom{a+b}{a}
+\]
+
+Next, apply the identity to the result with the third binomial coefficient:
+
+\[
+\sum_{k=0}^{\infty} \binom{a+b}{a+k} \binom{2c}{c+k} (-1)^k = \binom{a+b+c}{a+b}
+\]
+
+Thus, the evaluated sum is:
+
+\[
+S = \binom{a+b+c}{a+b}
+\]
 
 \section*{Question 6}
 \subsection*{6). 5.37}
