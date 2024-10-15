@@ -30,6 +30,42 @@
 
 \section*{Question 2}
 \subsection*{2). 4.33}
+If \( f(m) \) and \( g(m) \) are multiplicative functions, then the function
+\[ 
+    h(m) = \sum_{d \mid m} f(d) g(m/d)
+\]
+
+is also multiplicative. \\
+
+To show that \( h(m) \) is multiplicative, we need to prove that for any coprime integers \( m \) and \( n \), the following holds:
+\[ 
+    h(mn) = h(m)h(n)
+\]
+
+Since \( f \) and \( g \) are multiplicative, for any divisors \( d_1 \mid m \) and \( d_2 \mid n \), we have:
+\begin{gather*}
+    f(d_1 d_2) = f(d_1)f(d_2) \\
+    g\left(\frac{mn}{d_1 d_2}\right) = g\left(\frac{m}{d_1}\right)g\left(\frac{n}{d_2}\right)
+\end{gather*}
+
+Consider the divisors of \( mn \). Any divisor \( d \mid mn \) can be uniquely expressed as \( d = d_1 d_2 \), where \( d_1 \mid m \) and \( d_2 \mid n \).
+Thus, we can write:
+\[
+    h(mn) = \sum_{d_1 \mid m} \sum_{d_2 \mid n} f(d_1 d_2) g\left(\frac{m}{d_1} \cdot \frac{n}{d_2}\right)
+\]
+
+Using the multiplicativity of \( f \) and \( g \), this becomes:
+\[
+    h(mn) = \sum_{d_1 \mid m} f(d_1) g\left(\frac{m}{d_1}\right) 
+    \sum_{d_2 \mid n} f(d_2) g\left(\frac{n}{d_2}\right)
+\]
+
+This shows:
+\[ 
+    h(mn) = h(m)h(n).
+\]
+
+Therefore, \( h(m) \) is multiplicative.
 
 \section*{Question 3}
 \subsection*{3). 4.47}
