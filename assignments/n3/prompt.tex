@@ -48,6 +48,39 @@
 
 \section*{Question 8}
 \subsection*{8).}
+Let $a$, $b$, $x$, $y$, and $v$ be integers. We want to prove that:
+\[
+    \gcd(a,b) \leq \gcd(xa+yb, ua+vb)
+\]
+
+Let $d = \gcd(a,b)$. By definition, $d$ is the largest integer that divides both $a$ and $b$.
+Since $d$ divides both $a$ and $b$, we can express $a$ and $b$ as:
+\[
+    a = k_1d \quad \text{and} \quad b = k_2d, \quad \text{where } k_1 \text{ and } k_2 \text{ are integers}
+\]
+
+Now, let's consider the expression $xa + yb$:
+\begin{gather*}
+    xa + yb &= x(k_1d) + y(k_2d) \\
+            &= d(xk_1 + yk_2)
+\end{gather*}
+
+Similarly, for $ua + vb$:
+\begin{gather*}
+    ua + vb &= u(k_1d) + v(k_2d) \\
+            &= d(uk_1 + vk_2)
+\end{gather*}
+
+Now we can see that $d$ is a common divisor of both $xa + yb$ and $ua + vb$.
+By the definition of GCD, we know that:
+\[
+    \gcd(xa+yb, ua+vb) \geq d
+\]
+
+Since we defined $d$ as $\gcd(a,b)$ in step 1, we can rewrite the inequality as:
+\[
+    \gcd(xa+yb, ua+vb) \geq \gcd(a,b)
+\]
 
 \section*{Question 9}
 \subsection*{B1).}
