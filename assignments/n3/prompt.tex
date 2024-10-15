@@ -122,4 +122,40 @@ Since we defined $d$ as $\gcd(a,b)$ in step 1, we can rewrite the inequality as:
 \section*{Question 9}
 \subsection*{B1).}
 
+Find all non-negative integer pairs $(a, b)$ that satisfy both of the following conditions:
+\begin{gather*}
+    \gcd(a, b) = 10 \\
+    \operatorname{lcm}(a, b) = 100
+\end{gather*}
+
+\textbf{Approach using GCD \& LCM Relationship}: We start with the fundamental theorem $\gcd(a, b) \times \operatorname{lcm}(a, b) = a \times b$. \\ \\
+Substituting the given values $10 \times 100 = a \times b$ which simplifies to: $a \times b = 1000$.
+We need to find factor pairs of 1000 where both factors are multiples of 10 (since $\gcd = 10$).
+The possible factor pairs are: (10, 100), (20, 50), (50, 20), and (100, 10). \\
+
+\textbf{Prime Factorization Approach}: We know that $\gcd(a, b) = 10 = 2 \times 5$ and $\operatorname{lcm}(a, b) = 100 = 2^2 \times 5^2$. \\
+
+Let $a = 2^x \times 5^y$ and $b = 2^z \times 5^w$, where $x, y, z, w$ are non-negative integers.
+For $\gcd(a, b) = 10$:
+\begin{align*}
+    \min(x, z) &= 1 \\
+    \min(y, w) &= 1
+\end{align*}
+
+For $\operatorname{lcm}(a, b) = 100$:
+\begin{align*}
+    \max(x, z) &= 2 \\
+    \max(y, w) &= 2
+\end{align*}
+
+The possible combinations are:
+\begin{align*}
+    (x, y, z, w) &\in \{(1, 1, 2, 2), (1, 2, 2, 1), (2, 1, 1, 2), (2, 2, 1, 1)\}
+\end{align*}
+
+These correspond to the pairs:
+\begin{align*}
+    (a, b) &\in \{(10, 100), (20, 50), (50, 20), (100, 10)\}
+\end{align*}
+
 \end{document}
