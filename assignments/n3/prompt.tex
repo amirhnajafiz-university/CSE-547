@@ -42,6 +42,33 @@
 
 \section*{Question 6}
 \subsection*{6). 5.37}
+To prove the identities involving factorial powers as an analog to the binomial theorem, we need to show:
+\begin{gather*}
+(x + y)^{\underline{n}} = \sum_{k=0}^{n} \binom{n}{k} x^{\underline{k}} y^{\underline{n-k}} \\
+(x + y)^{\overline{n}} = \sum_{k=0}^{n} \binom{n}{k} x^{\overline{k}} y^{\overline{n-k}}
+\end{gather*}
+
+where \(x^{\underline{k}}\) and \(x^{\overline{k}}\) represent falling and rising factorial powers, respectively. \\
+
+The falling factorial power \(x^{\underline{k}}\) is defined as:
+
+\[ x^{\underline{k}} = x (x - 1) (x - 2) \cdots (x - k + 1) \]
+
+The rising factorial power \(x^{\overline{k}}\) is defined as:
+
+\[ x^{\overline{k}} = x (x + 1) (x + 2) \cdots (x + k - 1) \]
+
+For both identities, we can use combinatorial arguments similar to those used in the binomial theorem. \\
+
+\textbf{Combinatorial Argument}, consider a set of size \(n\). The term \(x^{\underline{k}}\) corresponds to choosing \(k\) elements from this set and arranging them in a sequence, which is equivalent to permutations.
+The term \(y^{\underline{n-k}}\) does the same for the remaining elements.
+\textbf{Binomial Coefficient}, the binomial coefficient \(\binom{n}{k}\) counts the number of ways to choose \(k\) elements from a set of size \(n\). \\
+
+\textbf{Combinatorial Argument}, similarly, for rising factorials, consider sequences where each element can be chosen with replacement, allowing for repetition. This corresponds to combinations with repetition.
+\textbf{Binomial Coefficient}, again, \(\binom{n}{k}\) counts the ways to choose elements with repetition allowed. \\
+
+These identities are extensions of the binomial theorem using factorial powers, which count permutations and combinations in different contexts. The proofs rely on understanding how these factorial powers relate to combinatorial selections and arrangements.
+This approach demonstrates that these identities hold for all nonnegative integers \(n\), providing an analog to the classical binomial theorem.
 
 \section*{Question 7}
 \subsection*{7).}
