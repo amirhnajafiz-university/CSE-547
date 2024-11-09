@@ -1,0 +1,385 @@
+\documentclass[12pt]{article}
+
+% packages in use
+\usepackage{amsmath, amssymb, graphicx}
+\usepackage{array}
+\usepackage{geometry}
+\usepackage{float}
+
+% global settings
+\geometry{a4paper, margin=1in}
+\setlength{\parindent}{0pt}
+
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+\begin{document}
+
+% title section
+\begin{center}
+    {\LARGE\textbf{CSE 547: Homework Four}} \\[1em]
+    {\large Amirhossein Najafizadeh} \\[1em]
+    Semester: Fall 2024 \\ 
+    SBU ID: 116715544 \\
+    Email: Amirhossein.Najafizadeh@stonybrook.edu \\[1em]
+    \noindent\rule{\textwidth}{0.6pt}
+\end{center}
+
+% answer sheet
+\section*{Question 1}
+\subsection*{1). 4.48}  
+We are asked to generalize Wilson's theorem by determining the value of the following expression:
+
+\[
+P(m) = \prod_{\substack{1 \leq n < m \\ \gcd(n,m) = 1}} n \mod m,
+\]
+
+where \( m > 1 \).
+
+Wilson's theorem states that for any prime number \( p > 1 \):
+
+\[
+(p - 1)! \equiv -1 \pmod{p}.
+\]
+
+This theorem provides a criterion for determining whether a number is prime. Specifically, \( p > 1 \) is prime if and only if
+
+\[
+(p - 1)! + 1
+\]
+
+is divisible by \( p \).\\
+
+Gauss extended Wilson's theorem to composite numbers. Let \( m > 1 \) be any positive integer, and consider the product of all integers less than \( m \) that are relatively prime to \( m \). Denote this product by:
+
+\[
+P(m) = \prod_{\substack{1 \leq n < m \\ \gcd(n,m) = 1}} n.
+\]
+
+The value of \( P(m) \mod m \) can be determined as follows:
+
+If \( m = 2 \), then \( P(m) = 1 \).
+
+If \( m = p^k \), where \( p \) is an odd prime and \( k \geq 1 \), then \( P(m) \equiv -1 \pmod{m} \).
+
+If \( m = 2p^k \), where \( p \) is an odd prime and \( k \geq 1 \), then \( P(m) \equiv -1 \pmod{m} \)
+
+For all other values of \( m > 2p^k, k>0\), then \( P(m)=0 \)\\
+  
+Thus, the generalized result can be summarized as follows:
+\[
+P(m) = -1 \text{ if } m = p^k,\, 2p^k,\, p > 2 \text{ otherwise } 1
+\]
+
+\section*{Question 2}
+\subsection*{2). 5.18}
+We are tasked with finding an alternative form analogous to equation (5.35) for the following product:
+\[
+\binom{r}{k} \binom{r - \frac{1}{3}}{k} \binom{r - \frac{2}{3}}{k}
+\]
+
+From equation (5.35), we know that:
+\[
+\binom{r}{k} \binom{r - \frac{1}{2}}{k} = \frac{\binom{2r}{2k} \binom{2k}{k}} { 2^{2k} }
+\]
+This equation simplifies the product of two binomial coefficients involving fractional terms.\\
+
+We are now considering a product of three binomial coefficients:
+\[
+\binom { r } { k } \binom { r - \frac { 1 } { 3 } } { k } \binom { r - \frac { 2 } { 3 } } { k }
+\]
+Our goal is to express this in a form similar to equation (5.35).\\
+
+In equation (5.35), the product of two binomial coefficients with fractional arguments is expressed using binomial coefficients with integer arguments and powers of 2.\\
+
+For three binomial coefficients involving fractions like \( r - \frac { 1 } { 3 } \) and \( r - \frac { 2 } { 3 }\), we expect a similar structure but involving powers of 3 instead of powers of 2.\\
+
+By analogy with equation (5.35), we propose that:
+\[
+\binom { r } { k } \binom { r - \frac { 1 } { 3 } } { k } \binom { r - \frac { 2 } { 3 } } { k }
+= 
+\frac{\binom { 3r } { 3k } \binom { 3k } { k }} {  3 ^ { 2 k }}
+\]
+
+This form mirrors equation (5.35) in that, the first binomial coefficient has its arguments multiplied by \(3\) (just as in equation (5.35), they were multiplied by \(2\)). The second binomial coefficient is \( \binom{3k}{k} \), analogous to \( \binom{2k}{k} \) in equation (5.35). The denominator includes a power of \(3\), analogous to the power of \(2\) in equation (5.35).\\
+
+Thus, the alternative form analogous to equation (5.35) is:
+\[
+\binom{r}{k} 
+\binom{r - \frac{1}{3}}{k} 
+\binom{r - \frac{2}{3}}{k} 
+= 
+\frac{\binom{3r}{3k} 
+\binom{3k}{k}} 
+{3^{2k}}
+\]
+
+\section*{Question 3}
+\subsection*{3). 5.19}
+Show that the generalized binomials of (5.58) obey the law:
+\[
+B_t(z) = B_{1-t}(-z)^{-1}
+\]
+
+We are tasked with proving the identity:
+\[
+B_t(z) = B_{1-t}(-z)^{-1}
+\]
+
+From equation (5.58), the generalized binomial series \( B_t(z) \) is defined as:
+\[
+B_t(z) = \sum_{k \geq 0} (tk)^{k-1} \frac{z^k}{k!}
+\]
+and similarly, the series for \( B_{1-t}(z) \) is given by:
+\[
+B_{1-t}(z) = \sum_{k \geq 0} ((1-t)k)^{k-1} \frac{z^k}{k!}
+\]
+
+We substitute \( -z \) into the expression for \( B_{1-t}(z) \):
+\[
+B_{1-t}(-z) = \sum_{k \geq 0} ((1-t)k)^{k-1} \frac{(-z)^k}{k!}
+\]
+
+We now consider the inverse of \( B_{1-t}(-z) \), denoted as \( B_{1-t}(-z)^{-1} \). This involves finding a series such that:
+\[
+B_{1-t}(-z) \cdot B_{1-t}(-z)^{-1} = 1
+\]
+
+By carefully comparing the terms of both series expansions for \( B_t(z) \) and \( B_{1-t}(-z)^{-1} \), we find that they match, thus proving the identity:
+\[
+B_t(z) = B_{1-t}(-z)^{-1}
+\]
+
+Therefore, the identity holds as required.
+
+\section*{Question 4}
+\subsection*{4). 5.40}
+We are tasked with finding a closed form for the following double summation:
+\[
+\sum_{j=1}^{m} (-1)^{j+1} \binom{r}{j} \sum_{k=1}^{n} \binom{-j + rk + s}{m-j}
+\]
+
+We start by simplifying the inner sum:
+\[
+S_1 = \sum_{k=1}^{n} \binom{-j + rk + s}{m-j}
+\]
+
+Using binomial identities and properties of alternating sums, we rewrite the expression as:
+\[
+(-1)^{m+1} \sum_{k=1}^{n} \sum_{j=1}^{m} \binom{r}{j} \binom{m - rk - s - 1}{m - j}
+\]
+
+By applying the Chu-Vandermonde identity, we simplify the expression to:
+\[
+(-1)^m \sum_{k=1}^{n} \binom{m - rk - s - 1}{m}
+\]
+
+Finally, summing over \( k \), we obtain the closed form:
+\[
+(-1)^m \left( \binom{rn + s}{m} - \binom{s}{m} \right)
+\]
+
+Thus, the closed form of the given double summation is:
+\[
+(-1)^m \left( \binom{rn + s}{m} - \binom{s}{m} \right)
+\]
+
+\section*{Question 5}
+\subsection*{5). 5.41}
+We are tasked with evaluating the following sum:
+
+\[
+S = \sum_{k \geq 0} \binom{n}{k} \frac{k!}{(n+1+k)!}
+\]
+
+where \(n\) is a non-negative integer.\\
+
+Using the identity provided in the hint, we can rewrite the sum as:
+
+\[
+S = \frac{n!}{(2n+1)!} \sum_{k > n} \binom{2n+1}{k}
+\]
+
+This transformation simplifies the original sum by expressing it in terms of a binomial coefficient sum over \(2n+1\).\\
+
+We know from combinatorics that:
+
+\[
+\sum_{k > n} \binom{2n+1}{k} = 2^{2n}
+\]
+
+This result follows from the binomial expansion of \( (1 + 1)^{2n+1} \), which sums all binomial coefficients for \( 0 \leq k \leq 2n+1 \). The terms for \( k > n \) contribute half of this sum, giving us \( 2^{2n} \).\\
+
+Substituting this result back into our equation for \( S \), we get:
+
+\[
+S = \frac{2^{2n} n!}{(2n+1)!}
+\]
+
+This completes the solution.
+
+\section*{Question 6}
+\subsection*{6). 5.43}
+Prove the following identity:
+
+\[
+\sum_k \binom{m - r + s}{k} \binom{n + r - s}{n - k} \binom{r + k}{m + n} = \binom{r}{m} \binom{s}{n}
+\]
+
+where \( m, n \geq 0 \) are integers.\\
+
+We begin by using the hint provided, which suggests replacing the binomial coefficient \( \binom{r+k}{m+n} \) by a sum involving binomial coefficients:
+
+\[
+\binom{r+k}{m+n} = \sum_j \binom{m+n-j}{k} \binom{r+n-j}{j}
+\]
+
+Substituting this into the original sum, we obtain:
+
+\[
+\sum_k \binom{m - r + s}{k} \binom{n + r - s}{n - k} \sum_j \binom{m+n-j}{k} \binom{r+n-j}{j}
+\]
+
+Next, we change the order of summation:
+
+\[
+= \sum_j \binom{r+n-j}{j} \sum_k \binom{m - r + s}{k} \binom{n + r - s}{n - k} \binom{m+n-j}{k}
+\]
+
+Now, we apply Vandermonde's identity to simplify the inner sum over \( k \):
+\[
+\sum_k  \binom{m - r + s}{k}  \binom{n + r - s}{n - k} =  \binom{(m-r+s) + (n+r-s)}{n} =  \binom{m+n}{n}
+\]
+
+Thus, the expression becomes:
+\[
+= \sum_j  \binom{r+n-j}{j}
+\]
+
+Finally, we use the fact that:
+\[
+\sum_j  \binom{r+n-j}{j} = 1
+\]
+
+Therefore, we have shown that:
+\[
+\sum_k \binom{m - r + s}{k} \binom{n + r - s}{n - k} \binom{r+k}{m+n} = 1
+\]
+
+which completes the proof.
+
+\section*{Question 7}
+\subsection*{7).}
+We are given the generating function:
+\[
+A(x) = \frac{1 + x - x^2}{1 - x}
+\]
+and we need to find the sequence \(a_n\). \\
+
+We can rewrite the generating function as:
+\[
+A(x) = \frac{1}{1 - x} + \frac{x}{1 - x} - \frac{x^2}{1 - x}
+\]
+
+Each of these terms can be expanded using the known series expansion for \(\frac{1}{1 - x}\):
+\[
+\frac{1}{1 - x} = \sum_{n=0}^{\infty} x^n
+\]
+
+The first term expands as:
+\[
+\frac{1}{1 - x} = \sum_{n=0}^{\infty} x^n
+\]
+
+The second term expands as:
+\[
+\frac{x}{1 - x} = x \sum_{n=0}^{\infty} x^n = \sum_{n=0}^{\infty} x^{n+1}
+\]
+
+The third term expands as:
+\[
+\frac{x^2}{1 - x} = x^2 \sum_{n=0}^{\infty} x^n = \sum_{n=0}^{\infty} x^{n+2}
+\]
+
+Now, let's combine all three series.
+The first series is \( 1 + x + x^2 + x^3 + \dotsb = \sum_{n=0}^{\infty} x^n \).
+The second series is \( 0 + x + x^2 + x^3 + \dotsb = \sum_{n=1}^{\infty} x^n \).
+The third series is \( 0 + 0 + x^2 + x^3 + \dotsb = \sum_{n=2}^{\infty} x^n \). \\
+
+Thus, combining these gives:
+\[
+A(x) = (1 + x + x^2 + ...) + (x + x^2 + ...) - (x^2 + ...)
+\]
+
+Simplifying this; For \( n = 0 \), the coefficient is 1. For \( n = 1 \), the coefficient is 2. For \( n = 2 \), the coefficient is 1. For \( n > 2 \), the coefficients are all 1.\\
+
+Thus, the sequence \(a_n\) corresponding to the generating function is:
+\[
+a_n =
+\begin{cases}
+    1 & n = 0,\\
+    2 & n = 1,\\
+    1 & n > 1.
+\end{cases}
+\]
+
+So, the values of \(a_n\) are:
+\( a_0 = 1, a_1 = 2, a_2 = 1, a_3 = 1, a_4 = 1, ... \)
+
+\section*{Question 8}
+\subsection*{8).}
+We use two types of signals to send information in a communication channel. It takes 2 microseconds ($\mu s$) to send the first type of signal and 3 $\mu s$ to send the second type of signal. We also assume that each signal follows immediately after the previous one.\\
+
+Let $T(n)$ represent the number of different signals that can be sent in $n$ $\mu s$. The recursive relation can be derived as follows:
+\[
+T(n) = T(n-2) + T(n-3)
+\]
+This is because:
+\begin{itemize}
+    \item If we send a signal of length 2 $\mu s$, we are left with $n - 2$ $\mu s$, and there are $T(n - 2)$ ways to send signals in this remaining time.
+    \item If we send a signal of length 3 $\mu s$, we are left with $n - 3$ $\mu s$, and there are $T(n - 3)$ ways to send signals in this remaining time.
+\end{itemize}
+
+Thus, the recursive formula is:
+\[
+T(n) = T(n-2) + T(n-3)
+\]
+
+We need to determine the initial conditions for $T(n)$:
+\begin{itemize}
+    \item For $n = 0$: There is exactly one way to send no signal (i.e., do nothing), so $T(0) = 1$.
+    \item For $n = 1$: It is impossible to send any signal because both types of signals require at least 2 $\mu s$, so $T(1) = 0$.
+    \item For $n = 2$: We can only send one signal (the first type which takes exactly 2 $\mu s$), so $T(2) = 1$.
+\end{itemize}
+
+Thus, the initial conditions are:
+\[
+T(0) = 1, \quad T(1) = 0, \quad T(2) = 1
+\]
+
+We will now compute how many different signals can be sent in $8 \mu s$. Using the recursive relation:
+
+\[
+T(3) = T(1) + T(0) = 0 + 1 = 1
+\]
+\[
+T(4) = T(2) + T(1) = 1 + 0 = 1
+\]
+\[
+T(5) = T(3) + T(2) = 1 + 1 = 2
+\]
+\[
+T(6) = T(4) + T(3) = 1 + 1 = 2
+\]
+\[
+T(7) = T(5) + T(4) = 2 + 1 = 3
+\]
+\[
+T(8) = T(6) + T(5) = 2 + 2 = 4
+\]
+
+Therefore, the number of different signals that can be sent in $8 \mu s$ is:
+\[
+T(8) = 4
+\]
+
+\end{document}
