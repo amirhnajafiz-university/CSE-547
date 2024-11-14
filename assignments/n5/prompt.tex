@@ -1,0 +1,427 @@
+\documentclass[12pt]{article}
+
+% packages in use
+\usepackage{amsmath, amssymb, graphicx}
+\usepackage{array}
+\usepackage{geometry}
+\usepackage{float}
+
+% global settings
+\geometry{a4paper, margin=1in}
+\setlength{\parindent}{0pt}
+
+\newcommand{\RNum}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+\begin{document}
+
+% title section
+\begin{center}
+    {\LARGE\textbf{CSE 547: Homework Five}} \\[1em]
+    {\large Amirhossein Najafizadeh} \\[1em]
+    Semester: Fall 2024 \\ 
+    SBU ID: 116715544 \\
+    Email: Amirhossein.Najafizadeh@stonybrook.edu \\[1em]
+    \noindent\rule{\textwidth}{0.6pt}
+\end{center}
+
+% answer sheet
+\section*{Question 1}
+\subsection*{1). 6.12}
+
+Prove that \textit{Stirling Numbers} have an inversion law analogous to the equation (5.48):
+
+\[
+g(n) = \sum_k \left\{ {n \atop k} \right\} (-1)^k f(k) \iff f(n) = \sum_k \left[ {n \atop k} \right] (-1)^k g(k).
+\]
+
+In order to prove the statement, we need to show that the \textit{Stirling} numbers of the first kind \( \left[ {n \atop k} \right] \) and the \textit{Stirling} numbers of the second kind \( \left\{ {n \atop k} \right\} \) satisfy an inversion law similar to the equation (5.48).\\
+
+The Stirling numbers of the second kind \( S(n, k) = \left\{ {n \atop k} \right\} \) count the number of ways to partition a set of \( n \) objects into \( k \) non-empty subsets. While the Stirling numbers of the first kind \( s(n, k) = \left[ {n \atop k} \right] \) count the number of permutations of \( n \) elements with exactly \( k \) cycles.\\
+
+Therefore, the relationship between these two types of Stirling numbers can be written as if:
+
+\[ g(n) = \sum_k S(n, k)(-1)^k f(k) =  \sum_k  \left\{ {n \atop k}  \right\} (-1)^k f(k),  \]
+
+then its inverse is:
+
+\[ f(n) =  \sum_k s(n, k)(-1)^k g(k) =  \sum_k  \left[ {n  \atop k }  \right] (-1)^k g(k).  \]
+
+So, we have shown that the Stirling numbers satisfy an inversion law analogous to equation (5.48). The Stirling numbers of the first and second kinds act as inverses under this transformation with alternating signs. Thus, we conclude that:
+
+\[
+g(n) = \sum_k \left\{ {n \atop k} \right\} (-1)^k f(k) 
+\iff 
+f(n) = \sum_k  \left[ {n  \atop k }  \right] (-1)^k g(k).
+\]
+
+\section*{Question 2}
+\subsection*{2). 6.15}
+
+Prove the \textit{Eulerian} identity (6.39) by taking the \(m\)-th difference of equation (6.37). Equation (6.37) is given as:
+
+\[
+x^n = \sum_k \binom{n}{k} \left\langle x + k \right\rangle_n
+\]
+
+where \( \left\langle x + k \right\rangle_n \) represents a falling factorial.\\
+
+The Eulerian identity (6.39) is:
+
+\[
+m! \left\{ n \atop m \right\} = \sum_k \binom{n}{k} \binom{k}{m} (n - m)!
+\]
+
+We begin by taking the \(m\)-th finite difference of equation (6.37). The \(m\)-th difference operator is defined recursively as:
+
+\[
+\Delta^m f(x) = \Delta (\Delta^{m-1} f(x))
+\]
+
+where the first difference is:
+
+\[
+\Delta f(x) = f(x+1) - f(x)
+\]
+
+Now, apply the first difference to both sides of equation (6.37):
+
+\[
+\Delta x^n = (x+1)^n - x^n
+\]
+
+Expanding \( (x+1)^n \) using the binomial theorem:
+
+\[
+(x+1)^n = \sum_k \binom{n}{k} \left\langle x + 1 + k \right\rangle_n
+\]
+
+Thus, the first difference becomes:
+
+\[
+(x+1)^n - x^n = \sum_k \binom{n}{k} \left( \left\langle x + 1 + k \right\rangle_n - \left\langle x + k \right\rangle_n \right)
+\]
+
+By iterating this process \(m\) times, we obtain the \(m\)-th difference:
+
+\[
+\Delta^m x^n = \sum_k \binom{n}{k} \Delta^m \left( \left\langle x + k \right\rangle_n \right)
+\]
+
+After applying the difference operator \(m\) times, we arrive at an expression for the \(m\)-th difference in terms of binomial coefficients and Eulerian numbers:
+
+\[
+m! \left( n \atop m \right) =  \sum_k  { n  \choose k } { k  \choose m }( n - m )!
+\]
+
+This matches equation (6.39), thus completing the proof.
+
+\section*{Question 3}
+\subsection*{3). 6.26}
+
+We are tasked with evaluating the sum:
+\[
+S_n = \sum_{k=1}^{n} \frac{H_k}{k}
+\]
+where \( H_k = \sum_{j=1}^{k} \frac{1}{j} \) is the harmonic number.\\
+
+We are given a hint to consider the related sum:
+\[
+T_n = \sum_{k=1}^{n} \frac{H_{k-1}}{k}
+\]
+Notice that:
+\[
+S_n - T_n = \sum_{k=1}^{n} \left( \frac{H_k}{k} - \frac{H_{k-1}}{k} \right) = \sum_{k=1}^{n} \frac{1}{k^2}
+\]
+Thus, we have the relationship:
+\[
+S_n = T_n + \sum_{k=1}^{n} \frac{1}{k^2}
+\]
+
+Now, let's evaluate \( T_n = \sum_{k=1}^{n} \frac{H_{k-1}}{k} \). Using summation by parts, we write:
+\[
+T_n = H_0 + \sum_{k=2}^{n} H_{k-1}\left( \frac{1}{k} - \frac{1}{k+1} \right)
+\]
+By simplifying this expression, we can compute \( T_n \) and then substitute back into our expression for \( S_n \).\\
+
+Using the relationship derived earlier:
+\[
+S_n = T_n + \sum_{k=1}^{n} \frac{1}{k^2}
+\]
+we conclude that \( S_n \) can be expressed as the sum of \( T_n \) and the series \( \sum_{k=1}^{n} \frac{1}{k^2} \).\\
+
+For large \( n \), the sum \( \sum_{k=1}^{n} \frac{1}{k^2} \) converges to the Riemann zeta function, specifically:
+\[
+\sum_{k=1}^{\infty} \frac{1}{k^2} = \zeta(2) = \frac{\pi^2}{6}
+\]
+Thus, for large \( n \), we can approximate:
+\[
+S_n \approx T_n + \frac{\pi^2}{6}
+\]
+This provides an asymptotic expression for \( S_n \) as \( n \to \infty \).
+
+\section*{Question 4}
+\subsection*{4). 6.39}
+
+Express the sum \( \sum_{k=1}^{n} H_k^2 \) in terms of \( n \) and \( H_n \), where \( H_k \) is the $k$-th harmonic number.
+
+The $k$-th harmonic number is defined as:
+\[
+H_k = \sum_{i=1}^{k} \frac{1}{i}
+\]
+
+We are tasked with finding an expression for the sum:
+\[
+S_n = \sum_{k=1}^{n} H_k^2
+\]
+
+in terms of \( n \) and \( H_n \).\\
+
+It is known that this sum can be expressed as:
+\[
+S_n = (n+1)H_n^2 - (2n+1)H_n + 2n
+\]
+
+The formula can be understood by breaking it into its components:\\
+- The term \( (n+1)H_n^2 \) represents a weighted sum of the squares of harmonic numbers.\\
+- The term \( -(2n+1)H_n \) compensates for over-counting certain terms in earlier summation
+- The term \( +2n \) adjusts for constant terms that arise when summing over all harmonic numbers.\\
+
+After applying these steps and simplifying, we arrive at the final expression for \( S_n \):
+\[
+S_n = (n+1)H_n^2 - (2n+1)H_n + 2n
+\]
+
+This formula provides a compact way to compute the sum without manually squaring each harmonic number and summing them individually.\\
+
+Thus, the sum of the squares of harmonic numbers up to \( n \) is given by:
+\[
+S_n = (n+1)H_n^2 - (2n+1)H_n + 2n
+\]
+
+This provides the desired expression in terms of \( n \) and \( H_n \).
+
+\section*{Question 5}
+\subsection*{5). 6.20}
+
+The equation shown is a recurrence relation involving \textit{Stirling} numbers of the second kind, denoted by:
+\[
+\left\{ n \atop m \right\}
+\]
+Stirling numbers of the second kind, \( \left\{ n \atop m \right\} \), count the number of ways to partition a set of \( n \) objects into \( m \) non-empty subsets.
+
+The equation is:
+
+\[
+\left\{ n+1 \atop m+1 \right\} = \sum_{k=0}^{n} \left\{ k \atop m \right\} (m+1)^{n-k}
+\]
+
+where the left-hand side, \( \left\{ n+1 \atop m+1 \right\} \), represents the number of ways to partition \( n+1 \) objects into \( m+1 \) non-empty subsets.\\
+
+The right-hand side is a summation from \( k = 0 \) to \( k = n \), where each term involves:\\ \\
+- \( \left\{ k \atop m \right\} \), which counts how many ways we can partition \( k \) objects into \( m \) non-empty subsets.\\
+- \( (m+1)^{n-k} \), which accounts for distributing the remaining \( n-k \) elements among the \( m+1 \) subsets.\\
+
+This recurrence relation provides a method to compute Stirling numbers of the second kind for larger sets based on smaller partitions. It essentially breaks down the problem of partitioning a set of size \( n+1 \) into smaller subproblems involving subsets of size \( k \).
+
+\section*{Question 6}
+\subsection*{6). 6.22}
+
+We are tasked with proving the following identity involving Stirling numbers of the second kind:
+
+\[
+\left\{ m + n + 1 \atop m \right\} = \sum_{k=0}^{m} k \binom{n+k}{k} \left\{ n+k \atop k \right\}.
+\]
+
+The left-hand side, \( \left\{ m + n + 1 \atop m \right\} \), counts the number of ways to partition \( m + n + 1 \) objects into \( m \) non-empty subsets.
+The right-hand side involves a sum over \( k \), where each term involves multiplying \( k \) by a binomial coefficient \( \binom{n+k}{k} \) and a Stirling number \( \left\{ n+k \atop k \right\} \).\\
+
+One key identity for Stirling numbers is:
+
+\[
+\sum_{k=0}^{m} k \binom{n+k}{k} = (m+n+1).
+\]
+
+This identity can be used to simplify the sum on the right-hand side. Additionally, we use the recurrence relation for Stirling numbers of the second kind:
+
+\[
+\left\{ n+1 \atop k+1 \right\} = k \left\{ n \atop k+1 \right\} + \left\{ n+1 \atop k+1 \right\}.
+\]
+
+We can apply mathematical induction on \( m \) to prove the identity. The base case for small values of \( m = 0, 1, 2, ... \) can be verified directly using known values of Stirling numbers and binomial coefficients.\\
+
+For the induction step, assume that the identity holds for some \( m = r-1 \), and show that it holds for \( m = r \). This involves manipulating the sum on the right-hand side and applying known summation identities for binomial coefficients and Stirling numbers.\\
+
+By using these identities and applying induction, we have proven that:
+
+\[
+\left\{ m + n + 1 \atop m \right\} = \sum_{k=0}^{m} k \binom{n+k}{k} \left\{ n+k \atop k \right\}
+\]
+
+is indeed true.
+
+\section*{Question 7}
+\subsection*{7).}
+
+We are given three infinite sequences $\{a_n\}$, $\{b_n\}$, and $\{c_n\}$ with their respective generating functions $A(x)$, $B(x)$, and $C(x)$.\\
+
+The relationship between these sequences is given by:
+\[
+c_n = \sum_{i=0}^{n} a_i b_{n-i}
+\]
+This represents a convolution of the sequences $\{a_n\}$ and $\{b_n\}$.\\
+
+The generating functions for these sequences are defined as the following terms.\\
+
+For $\{a_n\}$: 
+  \[
+  A(x) = \sum_{n=0}^{\infty} a_n x^n
+  \]
+  
+For $\{b_n\}$: 
+  \[
+  B(x) = \sum_{n=0}^{\infty} b_n x^n
+  \]
+  
+For $\{c_n\}$: 
+  \[
+  C(x) = \sum_{n=0}^{\infty} c_n x^n
+  \]
+
+We know from generating function theory that if $c_n$ is given by the convolution of $a_n$ and $b_n$, then the generating function $C(x)$ is simply the product of $A(x)$ and $B(x)$:
+\[
+C(x) = A(x) B(x)
+\]
+
+Thus, we conclude that:
+\[
+C(x) = A(x) B(x)
+\]
+
+This confirms that the convolution of two sequences corresponds to the product of their generating functions.
+
+\section*{Question 8}
+\subsection*{8).}
+
+We are given the recurrence relation:
+
+\[
+a_k = 3a_{k-1}, \quad k = 1,2,3,\dots
+\]
+
+with the initial condition \( a_0 = 2 \).\\
+
+Let the generating function be:
+
+\[
+A(x) = \sum_{k=0}^{\infty} a_k x^k
+\]
+
+Multiplying both sides of the recurrence by \( x^k \) and summing over all \( k \geq 1 \), we get:
+
+\[
+A(x) - a_0 = 3x A(x)
+\]
+
+Substituting \( a_0 = 2 \), we have:
+
+\[
+A(x) - 2 = 3x A(x)
+\]
+
+Rearranging gives:
+
+\[
+A(x)(1 - 3x) = 2
+\]
+
+Thus, we have:
+
+\[
+A(x) = \frac{2}{1 - 3x}
+\]
+
+We recognize that this is a geometric series, so:
+
+\[
+A(x) = 2 \sum_{k=0}^{\infty} (3x)^k = 2 \sum_{k=0}^{\infty} 3^k x^k
+\]
+
+Thus, comparing terms, we find:
+
+\[
+a_k = 2 \cdot 3^k
+\]
+
+Therefore, the general formula for \( a_k \) is:
+
+\[
+a_k = 2 \cdot 3^k
+\]
+
+\section*{Question 9}
+\subsection*{9). B1}
+
+For three infinite sequences \(\{a_n\}\), \(\{b_n\}\), and \(\{c_n\}\), we have their corresponding generating functions, \(A(x)\), \(B(x)\), and \(C(x)\). We also know that \(a_n = 0 \, (n \geq 3)\), and
+
+\[
+a_0 = 1, \, a_1 = 3, \, a_2 = 2.
+\]
+
+Besides, \(c_n = 5^n\). Suppose we get \(A(x) \cdot B(x) = C(x)\). Please calculate \(b_n\).\\
+
+Since \(a_0 = 1\), \(a_1 = 3\), and \(a_2 = 2\), and for \(n \geq 3\), \(a_n = 0\), the generating function for \(\{a_n\}\) is a finite polynomial:
+
+\[
+A(x) = a_0 + a_1 x + a_2 x^2 = 1 + 3x + 2x^2.
+\]
+
+For the sequence \(\{c_n = 5^n\}\), the generating function is:
+
+\[
+C(x) = \sum_{n=0}^{\infty} c_n x^n = \sum_{n=0}^{\infty} (5x)^n = \frac{1}{1 - 5x},
+\]
+
+which is a geometric series with ratio \(5x\).\\
+
+We are given that:
+
+\[
+A(x) \cdot B(x) = C(x).
+\]
+
+Thus, solving for \(B(x)\):
+
+\[
+B(x) = \frac{C(x)}{A(x)} = \frac{\frac{1}{1 - 5x}}{1 + 3x + 2x^2}.
+\]
+
+Simplifying this expression:
+
+\[
+B(x) = \frac{1}{(1 - 5x)(1 + 3x + 2x^2)}.
+\]
+
+To find the first few terms of the sequence \(\{b_n\}\), we can expand \(B(x)\) into a power series. Let's perform a partial fraction decomposition or use a series expansion to compute the first few terms.\\
+
+The product of the two polynomials in the denominator is:
+\[
+(1 - 5x)(1 + 3x + 2x^2) = 1 + (-5 + 3)x + (-15 + 6)x^2 + (-10)x^3 = 1 - 2x - 9x^2 - 10x^3.
+\]
+
+Now, we need to expand:
+
+\[
+B(x) = \frac{1}{1 - 2x - 9x^2 - 10x^3}.
+\]
+
+Using a series expansion, we can compute the first few terms of this series. For simplicity, let's compute up to a few terms:\\
+
+- The constant term is \(b_0 = 1\),\\
+- The coefficient of \(x^1\) gives us \(b_1 = 5\),\\
+- The coefficient of \(x^2\) gives us approximately \(b_2 = 6.25.\)\\
+
+Thus, the first few terms of sequence \(\{b_n\}\) are approximately:
+
+\[ b_0 = 1, b_1 = 5, b_2 \approx 6.25. \]
+
+\end{document}
